@@ -1,8 +1,142 @@
-   Name:
-   Age:
-   Gender:
-   Location:
-   Race:
-   Phone:
-   About Me:
-   + 2 photos
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZuriLove - Join + VIP Unlock - 250 REAL</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#fff5f8}
+header{background:linear-gradient(135deg,#ff2a6d,#ff7a00);color:white;padding:18px;text-align:center;position:sticky;top:0;z-index:10}
+.filters{padding:10px;background:white;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid #eee;position:sticky;top:108px;z-index:9}
+.filters button{border:1px solid #ff2a6d;background:white;color:#ff2a6d;padding:7px 12px;border-radius:20px;white-space:nowrap;font-weight:bold;font-size:11px}
+.filters button.active{background:#ff2a6d;color:white}
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);text-align:center;padding-bottom:8px;position:relative;cursor:pointer}
+.card img{width:100%;height:185px;object-fit:cover;object-position:top}
+.card h3{margin:6px 0 1px;font-size:12px}
+.card p{margin:0;font-size:10px;color:#666}
+.lock{position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.75);color:white;font-size:9px;padding:3px 6px;border-radius:10px}
+.chat-btn{background:#ff2a6d;color:white;border:none;width:90%;padding:6px;border-radius:20px;font-size:10px;margin-top:5px;font-weight:bold}
+.join-box{text-align:center;padding:16px;background:white;margin:12px;border-radius:15px;box-shadow:0 2px 12px rgba(0,0,0,0.1);border:2px dashed #ff2a6d}
+.payment-box{background:white;padding:12px;border-radius:15px 15px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,0.15);text-align:center;border-top:3px solid #ff2a6d;position:fixed;bottom:0;left:0;right:0;z-index:20}
+.mpesa{background:#00A651;color:white;padding:11px;width:100%;border:none;border-radius:10px;font-size:13px;font-weight:bold;margin:4px 0}
+.paypal{background:#0070BA;color:white;padding:11px;width:100%;border:none;border-radius:10px;font-size:13px;font-weight:bold;margin:4px 0;display:block;text-decoration:none}
+#vipModal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal-box{background:white;border-radius:20px;padding:20px;max-width:350px;width:100%;text-align:center}
+.modal-box img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid #ff2a6d}
+</style></head><body>
+<header>
+<h1 style="margin:0">ZuriLove 💕 VIP</h1>
+<p style="margin:3px 0;font-size:12px">Tap any profile to unlock • 250 REAL</p>
+<p style="margin:0;font-size:11px">150 Black • 100 White • 100 Ladies 150 Gents</p>
+</header>
+<div class="filters">
+<button class="active" onclick="filterP('all')" id="b-all">All 250</button>
+<button onclick="filterP('black')" id="b-black">Black 150</button>
+<button onclick="filterP('white')" id="b-white">White 100</button>
+<button onclick="filterP('women')" id="b-women">Ladies 100</button>
+<button onclick="filterP('men')" id="b-men">Gents 150</button>
+</div>
+<div class="profiles" id="grid"></div>
+<div class="join-box">
+<h3 style="margin:0;color:#ff2a6d">Want to JOIN? Get Seen by 1000+ People! 💖</h3>
+<p style="font-size:11px;color:#666;margin:6px 0">Add YOUR real profile - Be found for love in Nakuru</p>
+<button onclick="joinNow()" style="background:#ff2a6d;color:white;padding:12px;width:100%;border:none;border-radius:12px;font-weight:bold;font-size:14px">➕ JOIN ZuriLove - Add My Profile</button>
+<p style="font-size:9px;color:gray;margin-top:6px">Free to apply • KSh 100 listing fee after approval • Real photos only</p>
+</div>
+<div style="height:140px"></div>
+<div class="payment-box">
+<h3 style="margin:0 0 3px;font-size:13px">🔥 187 Online - Unlock to Chat!</h3>
+<button class="mpesa" onclick="unlockGeneral()">🇰🇪 M-Pesa Till 0101133704 - KSh 299</button>
+<a class="paypal" href="https://www.paypal.com/ncp/payment/7WCEVK7QVBM9A" target="_blank">🌍 PayPal $3 - Diaspora</a>
+</div>
+<div id="vipModal" onclick="closeModal()">
+<div class="modal-box" onclick="event.stopPropagation()">
+<img id="mImg" src="">
+<h2 id="mName" style="margin:10px 0 2px">Grace, 22</h2>
+<p id="mInfo" style="margin:0;font-size:12px;color:#666">Nakuru Town • Black • Online Now</p>
+<p style="font-size:11px;color:#ff2a6d;margin:10px 0">🔒 Chat locked - Unlock to get WhatsApp number</p>
+<button class="mpesa" id="mMpesa">🇰🇪 Unlock Chat - M-Pesa KSh 299</button>
+<a class="paypal" id="mPaypal" target="_blank">🌍 PayPal $3 - Unlock Now</a>
+<p style="font-size:9px;color:gray;margin-top:8px">After payment, auto WhatsApp to admin to confirm<br><b>Erick Muriithi | ZuriLove</b></p>
+<button onclick="closeModal()" style="margin-top:8px;background:none;border:none;color:#888;font-size:11px">Cancel</button>
+</div>
+</div>
+<script>
+const womenNames=["Grace","Mary","Sharon","Faith","Aisha","Zuri","Neema","Wanjiku","Akinyi","Njeri","Linda","Becky","Vanessa","Mercy","Cynthia","Diana","Joy","Ashley","Nicole","Chloe","Sophie","Emma","Olivia","Isabella","Mia","Ava","Lily","Zara","Amara","Keisha","Imani","Sasha","Jessica","Hannah","Emily","Sarah","Rachel","Kate","Lucy","Brenda","Stacy","Whitney","Tiffany","Lauren","Naliaka","Chebet","Awino","Atieno","Mwikali"];
+const menNames=["Brian","Kevin","David","John","Mike","Alex","Eric","James","Daniel","Chris","Ryan","Tyler","Brandon","Josh","Matt","Victor","Samuel","Peter","Joseph","Moses","Isaac","Jacob","Collins","Felix","Dennis","Mark","Steve","Frank","George","Paul","Michael","Anthony","Robert","Justin","Kyle","Aaron","Adam","Omar","Jamal","Tyrone","Malik","Liam","Noah","Ethan","Lucas","Leo","Caleb","Diego","Carlos","Otieno","Kamau","Omondi","Kiprono","Baraka","Jabari","Kwame"];
+const locs=["Nakuru Town","Lanet","Njoro","Kabarak","Molo","Naivasha","Bahati","Rongai","Subukia","Gilgil","Nairobi","Mombasa","USA - Texas","UK - London","Canada","Germany","Australia"];
+const grid=document.getElementById('grid');
+let profiles=[];
+for(let i=0;i<60;i++){
+ let n=womenNames[Math.floor(Math.random()*womenNames.length)];
+ let age=19+Math.floor(Math.random()*13);
+ let loc=locs[Math.floor(Math.random()*10)];
+ let pid=Math.floor(Math.random()*70);
+ let img = pid%2===0 ? `https://randomuser.me/api/portraits/women/${pid}.jpg` : `https://i.pravatar.cc/400?img=${(pid+15)%70}`;
+ profiles.push({name:n,age,loc,race:"Black",gender:"women",online:Math.random()>0.2,img});
+}
+for(let i=0;i<90;i++){
+ let n=menNames[Math.floor(Math.random()*menNames.length)];
+ let age=21+Math.floor(Math.random()*14);
+ let loc=locs[Math.floor(Math.random()*locs.length)];
+ let pid=Math.floor(Math.random()*70);
+ let img = pid%2===0 ? `https://randomuser.me/api/portraits/men/${pid}.jpg` : `https://i.pravatar.cc/400?img=${(pid+20)%70}`;
+ profiles.push({name:n,age,loc,race:"Black",gender:"men",online:Math.random()>0.25,img});
+}
+for(let i=0;i<40;i++){
+ let n=womenNames[Math.floor(Math.random()*womenNames.length)];
+ let age=19+Math.floor(Math.random()*13);
+ let loc=locs[Math.floor(Math.random()*locs.length)];
+ let pid=Math.floor(Math.random()*70);
+ let img=`https://randomuser.me/api/portraits/women/${pid}.jpg`;
+ profiles.push({name:n,age,loc,race:"White",gender:"women",online:Math.random()>0.3,img});
+}
+for(let i=0;i<60;i++){
+ let n=menNames[Math.floor(Math.random()*menNames.length)];
+ let age=21+Math.floor(Math.random()*15);
+ let loc=locs[Math.floor(Math.random()*locs.length)];
+ let pid=Math.floor(Math.random()*70);
+ let img=`https://randomuser.me/api/portraits/men/${pid}.jpg`;
+ profiles.push({name:n,age,loc,race:"White",gender:"men",online:Math.random()>0.3,img});
+}
+profiles.sort(()=>Math.random()-0.5);
+function render(list){
+ grid.innerHTML="";
+ list.forEach((p)=>{
+   let d=document.createElement('div');
+   d.className='card';
+   d.onclick=()=>openVIP(p);
+   d.innerHTML=`<div style="position:relative"><img src="${p.img}" loading="lazy"><span class="lock">🔒 VIP</span></div><h3>${p.name}, ${p.age}</h3><p style="font-size:10px">${p.loc}</p><p>${p.online?'🟢 Online':'⚪ Offline'} • <b>${p.race}</b></p><button class="chat-btn">💬 Chat ${p.name}</button>`;
+   grid.appendChild(d);
+ });
+}
+render(profiles);
+function filterP(t){
+ document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+ document.getElementById('b-'+t)?.classList.add('active');
+ if(t==='all') render(profiles);
+ else if(t==='black') render(profiles.filter(p=>p.race==='Black'));
+ else if(t==='white') render(profiles.filter(p=>p.race==='White'));
+ else if(t==='women') render(profiles.filter(p=>p.gender==='women'));
+ else if(t==='men') render(profiles.filter(p=>p.gender==='men'));
+}
+function openVIP(p){
+ document.getElementById('vipModal').style.display='flex';
+ document.getElementById('mImg').src=p.img;
+ document.getElementById('mName').innerText=`${p.name}, ${p.age}`;
+ document.getElementById('mInfo').innerText=`${p.loc} • ${p.race} • ${p.gender==='women'?'👩 Lady':'👨 Gent'} • ${p.online?'🟢 Online Now':'⚪ Offline'}`;
+ let waText=`Hi ZuriLove Admin 👋%0A%0AI want to chat with *${p.name}, ${p.age}* from *${p.loc}* (${p.race} ${p.gender})%0A%0AI have paid KSh 299 to M-Pesa Till *0101133704*%0A%0A*My M-Pesa Code:* [paste here]%0A*My Name:* %0A%0APlease unlock ${p.name}'s WhatsApp number for me 🙏`;
+ let waLink=`https://wa.me/254745064401?text=${waText}`;
+ document.getElementById('mMpesa').onclick=()=>{window.open(waLink,'_blank')};
+ let paypalText=`Hi ZuriLove I paid $3 via PayPal to unlock ${p.name}, ${p.age} from ${p.loc} (${p.race}). Please unlock me. Tx ID:`;
+ document.getElementById('mPaypal').href=`https://www.paypal.com/ncp/payment/7WCEVK7QVBM9A`;
+ document.getElementById('mPaypal').onclick=()=>{setTimeout(()=>{window.open(`https://wa.me/254745064401?text=${encodeURIComponent(paypalText)}`,'_blank')},1000)};
+}
+function closeModal(){document.getElementById('vipModal').style.display='none'}
+function unlockGeneral(){
+ let waText=`Hi ZuriLove Admin 👋%0A%0AI want VIP access to chat ALL 250 profiles (150 Black 100 White)%0A%0AI have paid KSh 299 to M-Pesa Till *0101133704*%0A%0A*My M-Pesa Code:* [paste here]%0A*My Name:* %0A%0APlease unlock me 🙏`;
+ window.open(`https://wa.me/254745064401?text=${waText}`,'_blank');
+}
+function joinNow(){
+ let joinText=`Hi ZuriLove Admin 👋%0A%0AI want to JOIN ZuriLove dating site!%0A%0A*My Details:*%0AName:%0AAge:%0AGender:%0ALocation (e.g Nakuru Town):%0ATribe/Race (Black/White):%0APhone (WhatsApp):%0AAbout Me:%0A%0AI have attached my 2 best photos 📸%0A%0APlease add me 🙏`;
+ window.open(`https://wa.me/254745064401?text=${joinText}`,'_blank');
+}
+</script></body></html>
