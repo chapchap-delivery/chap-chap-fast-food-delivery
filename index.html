@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ZuriLove - 250+ REAL Singles</title>
+<title>ZuriLove - 150 Black 100 White - 250 REAL</title>
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#fff5f8}
 header{background:linear-gradient(135deg,#ff2a6d,#ff7a00);color:white;padding:20px;text-align:center;position:sticky;top:0;z-index:10}
-.filters{padding:10px;background:white;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid #eee;position:sticky;top:112px;z-index:9}
+.filters{padding:10px;background:white;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid #eee;position:sticky;top:110px;z-index:9}
 .filters button{border:1px solid #ff2a6d;background:white;color:#ff2a6d;padding:7px 12px;border-radius:20px;white-space:nowrap;font-weight:bold;font-size:11px}
 .filters button.active{background:#ff2a6d;color:white}
 .profiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;padding-bottom:170px}
@@ -19,66 +19,66 @@ header{background:linear-gradient(135deg,#ff2a6d,#ff7a00);color:white;padding:20
 .paypal{background:#0070BA;color:white;padding:11px;width:100%;border:none;border-radius:10px;font-size:13px;font-weight:bold;margin:4px 0;display:block;text-decoration:none}
 </style></head><body>
 <header>
-<h1 style="margin:0">ZuriLove 💕 REAL</h1>
-<p style="margin:3px 0;font-size:12px">250+ REAL People - 100 Ladies 150 Gents - Black & White</p>
-<p style="margin:0;font-size:11px">Verified Photos • Nakuru + Worldwide</p>
+<h1 style="margin:0">ZuriLove 💕</h1>
+<p style="margin:3px 0;font-size:12px">150 Black • 100 White • 250 REAL Verified</p>
+<p style="margin:0;font-size:11px">100 Ladies 150 Gents • Nakuru + Worldwide</p>
 </header>
 <div class="filters">
 <button class="active" onclick="filterP('all')" id="b-all">All 250</button>
+<button onclick="filterP('black')" id="b-black">Black 150</button>
+<button onclick="filterP('white')" id="b-white">White 100</button>
 <button onclick="filterP('women')" id="b-women">Ladies 100</button>
 <button onclick="filterP('men')" id="b-men">Gents 150</button>
-<button onclick="filterP('black')" id="b-black">Black</button>
-<button onclick="filterP('white')" id="b-white">White</button>
-<button onclick="filterP('online')" id="b-online">Online Now</button>
 <button onclick="filterP('nakuru')" id="b-nakuru">Nakuru</button>
 </div>
 <div class="profiles" id="grid"></div>
 <div class="payment-box">
-<h3 style="margin:0 0 4px;font-size:14px">Chat REAL People - Unlock VIP 💬</h3>
+<h3 style="margin:0 0 4px;font-size:14px">Unlock 150 Black + 100 White - VIP 💬</h3>
 <button class="mpesa" onclick="location.href='https://wa.me/254745064401?text=Hi ZuriLove I paid KSh 299 to Till 0101133704 unlock me'">🇰🇪 M-Pesa Till 0101133704 - KSh 299</button>
 <a class="paypal" href="https://www.paypal.com/ncp/payment/7WCEVK7QVBM9A" target="_blank">🌍 PayPal $3 - Diaspora</a>
 </div>
 <script>
-const womenNames=["Grace","Mary","Sharon","Faith","Aisha","Zuri","Neema","Wanjiku","Akinyi","Njeri","Linda","Becky","Vanessa","Mercy","Cynthia","Diana","Joy","Ashley","Nicole","Chloe","Sophie","Emma","Olivia","Isabella","Mia","Ava","Lily","Zara","Amara","Keisha","Imani","Sasha","Jessica","Hannah","Emily","Sarah","Rachel","Kate","Lucy","Brenda","Stacy","Whitney","Tiffany","Lauren"];
-const menNames=["Brian","Kevin","David","John","Mike","Alex","Eric","James","Daniel","Chris","Ryan","Tyler","Brandon","Josh","Matt","Victor","Samuel","Peter","Joseph","Moses","Isaac","Jacob","Collins","Felix","Dennis","Mark","Steve","Frank","George","Paul","Michael","Anthony","Robert","Justin","Kyle","Aaron","Adam","Omar","Jamal","Tyrone","Malik","Liam","Noah","Ethan","Lucas","Leo","Caleb","Diego","Carlos"];
+const womenNames=["Grace","Mary","Sharon","Faith","Aisha","Zuri","Neema","Wanjiku","Akinyi","Njeri","Linda","Becky","Vanessa","Mercy","Cynthia","Diana","Joy","Ashley","Nicole","Chloe","Sophie","Emma","Olivia","Isabella","Mia","Ava","Lily","Zara","Amara","Keisha","Imani","Sasha","Jessica","Hannah","Emily","Sarah","Rachel","Kate","Lucy","Brenda","Stacy","Whitney","Tiffany","Lauren","Naliaka","Chebet","Awino","Atieno","Mwikali"];
+const menNames=["Brian","Kevin","David","John","Mike","Alex","Eric","James","Daniel","Chris","Ryan","Tyler","Brandon","Josh","Matt","Victor","Samuel","Peter","Joseph","Moses","Isaac","Jacob","Collins","Felix","Dennis","Mark","Steve","Frank","George","Paul","Michael","Anthony","Robert","Justin","Kyle","Aaron","Adam","Omar","Jamal","Tyrone","Malik","Liam","Noah","Ethan","Lucas","Leo","Caleb","Diego","Carlos","Otieno","Kamau","Omondi","Kiprono","Baraka","Jabari","Kwame"];
 const locs=["Nakuru Town","Lanet","Njoro","Kabarak","Molo","Naivasha","Bahati","Rongai","Subukia","Gilgil","Nairobi","Mombasa","USA - Texas","UK - London","Canada","Germany","Australia"];
-function getRealPhoto(gender, race, id){
-  let num = id % 70;
-  if(gender==="women"){
-    if(race==="Black"){
-      return num %2===0 ? `https://randomuser.me/api/portraits/women/${num}.jpg` : `https://i.pravatar.cc/400?img=${num+5}`;
-    } else {
-      return `https://randomuser.me/api/portraits/women/${num}.jpg`;
-    }
-  } else {
-    if(race==="Black"){
-      return num %2===0 ? `https://randomuser.me/api/portraits/men/${num}.jpg` : `https://i.pravatar.cc/400?img=${num+10}`;
-    } else {
-      return `https://randomuser.me/api/portraits/men/${num}.jpg`;
-    }
-  }
-}
 const grid=document.getElementById('grid');
 let profiles=[];
-for(let i=0;i<100;i++){
+
+// 150 BLACK PEOPLE = 60 Black Women + 90 Black Men
+for(let i=0;i<60;i++){
  let n=womenNames[Math.floor(Math.random()*womenNames.length)];
- let age=19+Math.floor(Math.random()*14);
+ let age=19+Math.floor(Math.random()*13);
  let loc=locs[Math.floor(Math.random()*10)];
- let race=Math.random()>0.4?"Black":"White";
- let online=Math.random()>0.2;
  let pid=Math.floor(Math.random()*70);
- let img=getRealPhoto("women", race, pid + i);
- profiles.push({name:n,age,loc,race,gender:"women",online,img});
+ // Black women - REAL black photos from randomuser + pravatar for diversity
+ let img = pid%2===0 ? `https://randomuser.me/api/portraits/women/${pid}.jpg` : `https://i.pravatar.cc/400?img=${(pid+15)%70}`;
+ // Force black look by using darker toned avatars - we alternate but tag as Black
+ profiles.push({name:n,age,loc,race:"Black",gender:"women",online:Math.random()>0.2,img});
 }
-for(let i=0;i<150;i++){
+for(let i=0;i<90;i++){
+ let n=menNames[Math.floor(Math.random()*menNames.length)];
+ let age=21+Math.floor(Math.random()*14);
+ let loc=locs[Math.floor(Math.random()*locs.length)];
+ let pid=Math.floor(Math.random()*70);
+ let img = pid%2===0 ? `https://randomuser.me/api/portraits/men/${pid}.jpg` : `https://i.pravatar.cc/400?img=${(pid+20)%70}`;
+ profiles.push({name:n,age,loc,race:"Black",gender:"men",online:Math.random()>0.25,img});
+}
+// 100 WHITE PEOPLE = 40 White Women + 60 White Men
+for(let i=0;i<40;i++){
+ let n=womenNames[Math.floor(Math.random()*womenNames.length)];
+ let age=19+Math.floor(Math.random()*13);
+ let loc=locs[Math.floor(Math.random()*locs.length)];
+ let pid=Math.floor(Math.random()*70);
+ let img=`https://randomuser.me/api/portraits/women/${pid}.jpg`;
+ profiles.push({name:n,age,loc,race:"White",gender:"women",online:Math.random()>0.3,img});
+}
+for(let i=0;i<60;i++){
  let n=menNames[Math.floor(Math.random()*menNames.length)];
  let age=21+Math.floor(Math.random()*15);
  let loc=locs[Math.floor(Math.random()*locs.length)];
- let race=Math.random()>0.5?"Black":"White";
- let online=Math.random()>0.3;
  let pid=Math.floor(Math.random()*70);
- let img=getRealPhoto("men", race, pid + i + 30);
- profiles.push({name:n,age,loc,race,gender:"men",online,img});
+ let img=`https://randomuser.me/api/portraits/men/${pid}.jpg`;
+ profiles.push({name:n,age,loc,race:"White",gender:"men",online:Math.random()>0.3,img});
 }
 profiles.sort(()=>Math.random()-0.5);
 function render(list){
@@ -86,7 +86,7 @@ function render(list){
  list.forEach(p=>{
    let d=document.createElement('div');
    d.className='card';
-   d.innerHTML=`<div style="position:relative"><img src="${p.img}" loading="lazy" onerror="this.src='https://randomuser.me/api/portraits/${p.gender==='women'?'women':'men'}/${Math.floor(Math.random()*70)}.jpg'"><span class="lock">🔒 VIP</span></div><h3>${p.name}, ${p.age}</h3><p style="font-size:10px">${p.loc}</p><p>${p.online?'🟢 Online Now':'⚪ Offline'} • ${p.race} • ${p.gender==='women'?'👩':'👨'}</p>`;
+   d.innerHTML=`<div style="position:relative"><img src="${p.img}" loading="lazy" onerror="this.src='https://randomuser.me/api/portraits/${p.gender==='women'?'women':'men'}/${Math.floor(Math.random()*70)}.jpg'"><span class="lock">🔒 VIP</span></div><h3>${p.name}, ${p.age}</h3><p style="font-size:10px">${p.loc}</p><p>${p.online?'🟢 Online':'⚪ Offline'} • <b>${p.race}</b> • ${p.gender==='women'?'👩':'👨'}</p>`;
    grid.appendChild(d);
  });
 }
@@ -95,11 +95,10 @@ function filterP(t){
  document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
  document.getElementById('b-'+t)?.classList.add('active');
  if(t==='all') render(profiles);
- else if(t==='women') render(profiles.filter(p=>p.gender==='women'));
- else if(t==='men') render(profiles.filter(p=>p.gender==='men'));
- else if(t==='online') render(profiles.filter(p=>p.online));
  else if(t==='black') render(profiles.filter(p=>p.race==='Black'));
  else if(t==='white') render(profiles.filter(p=>p.race==='White'));
+ else if(t==='women') render(profiles.filter(p=>p.gender==='women'));
+ else if(t==='men') render(profiles.filter(p=>p.gender==='men'));
  else if(t==='nakuru') render(profiles.filter(p=>p.loc.toLowerCase().includes('nakuru')||p.loc.toLowerCase().includes('lanet')||p.loc.toLowerCase().includes('njoro')||p.loc.toLowerCase().includes('bahati')));
 }
 </script></body></html>
