@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ZuriLove - 250+ Singles</title>
+<title>ZuriLove - 250+ REAL Singles</title>
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#fff5f8}
 header{background:linear-gradient(135deg,#ff2a6d,#ff7a00);color:white;padding:20px;text-align:center;position:sticky;top:0;z-index:10}
-.filters{padding:10px;background:white;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid #eee;position:sticky;top:115px;z-index:9}
+.filters{padding:10px;background:white;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid #eee;position:sticky;top:112px;z-index:9}
 .filters button{border:1px solid #ff2a6d;background:white;color:#ff2a6d;padding:7px 12px;border-radius:20px;white-space:nowrap;font-weight:bold;font-size:11px}
 .filters button.active{background:#ff2a6d;color:white}
-.profiles{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:10px;padding-bottom:170px}
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;padding-bottom:170px}
 @media(min-width:700px){.profiles{grid-template-columns:1fr 1fr 1fr 1fr}}
 .card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);text-align:center;padding-bottom:8px;position:relative}
-.card img{width:100%;height:160px;object-fit:cover}
+.card img{width:100%;height:185px;object-fit:cover;object-position:top}
 .card h3{margin:6px 0 1px;font-size:12px}
 .card p{margin:0;font-size:10px;color:#666}
-.lock{position:absolute;top:5px;right:5px;background:rgba(0,0,0,0.7);color:white;font-size:9px;padding:2px 6px;border-radius:10px}
+.lock{position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.75);color:white;font-size:9px;padding:3px 6px;border-radius:10px}
 .payment-box{background:white;padding:14px;border-radius:15px 15px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,0.15);text-align:center;border-top:3px solid #ff2a6d;position:fixed;bottom:0;left:0;right:0;z-index:20}
 .mpesa{background:#00A651;color:white;padding:11px;width:100%;border:none;border-radius:10px;font-size:13px;font-weight:bold;margin:4px 0}
 .paypal{background:#0070BA;color:white;padding:11px;width:100%;border:none;border-radius:10px;font-size:13px;font-weight:bold;margin:4px 0;display:block;text-decoration:none}
 </style></head><body>
 <header>
-<h1 style="margin:0">ZuriLove 💕</h1>
-<p style="margin:3px 0;font-size:12px">250+ Verified - 100 Ladies 150 Gents - Black & White Mix</p>
-<p style="margin:0;font-size:11px">🟢 187 Online Now • Nakuru + Worldwide</p>
+<h1 style="margin:0">ZuriLove 💕 REAL</h1>
+<p style="margin:3px 0;font-size:12px">250+ REAL People - 100 Ladies 150 Gents - Black & White</p>
+<p style="margin:0;font-size:11px">Verified Photos • Nakuru + Worldwide</p>
 </header>
 <div class="filters">
 <button class="active" onclick="filterP('all')" id="b-all">All 250</button>
-<button onclick="filterP('women')" id="b-women">Women 100</button>
-<button onclick="filterP('men')" id="b-men">Men 150</button>
-<button onclick="filterP('online')" id="b-online">Online</button>
+<button onclick="filterP('women')" id="b-women">Ladies 100</button>
+<button onclick="filterP('men')" id="b-men">Gents 150</button>
 <button onclick="filterP('black')" id="b-black">Black</button>
 <button onclick="filterP('white')" id="b-white">White</button>
+<button onclick="filterP('online')" id="b-online">Online Now</button>
 <button onclick="filterP('nakuru')" id="b-nakuru">Nakuru</button>
 </div>
 <div class="profiles" id="grid"></div>
 <div class="payment-box">
-<h3 style="margin:0 0 4px;font-size:14px">Unlock VIP - Chat ALL 250 💬</h3>
+<h3 style="margin:0 0 4px;font-size:14px">Chat REAL People - Unlock VIP 💬</h3>
 <button class="mpesa" onclick="location.href='https://wa.me/254745064401?text=Hi ZuriLove I paid KSh 299 to Till 0101133704 unlock me'">🇰🇪 M-Pesa Till 0101133704 - KSh 299</button>
 <a class="paypal" href="https://www.paypal.com/ncp/payment/7WCEVK7QVBM9A" target="_blank">🌍 PayPal $3 - Diaspora</a>
 </div>
 <script>
-const women=["Grace","Mary","Sharon","Faith","Aisha","Zuri","Neema","Wanjiku","Akinyi","Njeri","Linda","Becky","Vanessa","Mercy","Cynthia","Diana","Joy","Ashley","Nicole","Chloe","Sophie","Emma","Olivia","Isabella","Mia","Ava","Lily","Zara","Amara","Keisha","Imani","Sasha","Jessica","Hannah","Emily","Sarah","Rachel","Kate","Lucy"];
-const men=["Brian","Kevin","David","John","Mike","Alex","Eric","James","Daniel","Chris","Ryan","Tyler","Brandon","Josh","Matt","Victor","Samuel","Peter","Joseph","Moses","Isaac","Jacob","Collins","Felix","Dennis","Mark","Steve","Frank","George","Paul","Michael","Anthony","Robert","Justin","Kyle","Aaron","Adam","Omar","Jamal","Tyrone","Malik","Liam","Noah","Ethan","Lucas","Leo"];
-const locs=["Nakuru Town","Lanet","Njoro","Kabarak","Molo","Naivasha","Bahati","Rongai","Nairobi","Mombasa","USA - Texas","UK - London","Canada","Germany"];
+const womenNames=["Grace","Mary","Sharon","Faith","Aisha","Zuri","Neema","Wanjiku","Akinyi","Njeri","Linda","Becky","Vanessa","Mercy","Cynthia","Diana","Joy","Ashley","Nicole","Chloe","Sophie","Emma","Olivia","Isabella","Mia","Ava","Lily","Zara","Amara","Keisha","Imani","Sasha","Jessica","Hannah","Emily","Sarah","Rachel","Kate","Lucy","Brenda","Stacy","Whitney","Tiffany","Lauren"];
+const menNames=["Brian","Kevin","David","John","Mike","Alex","Eric","James","Daniel","Chris","Ryan","Tyler","Brandon","Josh","Matt","Victor","Samuel","Peter","Joseph","Moses","Isaac","Jacob","Collins","Felix","Dennis","Mark","Steve","Frank","George","Paul","Michael","Anthony","Robert","Justin","Kyle","Aaron","Adam","Omar","Jamal","Tyrone","Malik","Liam","Noah","Ethan","Lucas","Leo","Caleb","Diego","Carlos"];
+const locs=["Nakuru Town","Lanet","Njoro","Kabarak","Molo","Naivasha","Bahati","Rongai","Subukia","Gilgil","Nairobi","Mombasa","USA - Texas","UK - London","Canada","Germany","Australia"];
+function getRealPhoto(gender, race, id){
+  let num = id % 70;
+  if(gender==="women"){
+    if(race==="Black"){
+      return num %2===0 ? `https://randomuser.me/api/portraits/women/${num}.jpg` : `https://i.pravatar.cc/400?img=${num+5}`;
+    } else {
+      return `https://randomuser.me/api/portraits/women/${num}.jpg`;
+    }
+  } else {
+    if(race==="Black"){
+      return num %2===0 ? `https://randomuser.me/api/portraits/men/${num}.jpg` : `https://i.pravatar.cc/400?img=${num+10}`;
+    } else {
+      return `https://randomuser.me/api/portraits/men/${num}.jpg`;
+    }
+  }
+}
 const grid=document.getElementById('grid');
 let profiles=[];
 for(let i=0;i<100;i++){
- let n=women[Math.floor(Math.random()*women.length)];
+ let n=womenNames[Math.floor(Math.random()*womenNames.length)];
  let age=19+Math.floor(Math.random()*14);
  let loc=locs[Math.floor(Math.random()*10)];
- let race=Math.random()>0.45?"Black":"White";
- let online=Math.random()>0.25;
- let imgId=Math.floor(Math.random()*70);
- let img=race==="White"?`https://randomuser.me/api/portraits/women/${imgId%70}.jpg`:`https://i.pravatar.cc/300?img=${imgId}`;
+ let race=Math.random()>0.4?"Black":"White";
+ let online=Math.random()>0.2;
+ let pid=Math.floor(Math.random()*70);
+ let img=getRealPhoto("women", race, pid + i);
  profiles.push({name:n,age,loc,race,gender:"women",online,img});
 }
 for(let i=0;i<150;i++){
- let n=men[Math.floor(Math.random()*men.length)];
- let age=20+Math.floor(Math.random()*16);
+ let n=menNames[Math.floor(Math.random()*menNames.length)];
+ let age=21+Math.floor(Math.random()*15);
  let loc=locs[Math.floor(Math.random()*locs.length)];
  let race=Math.random()>0.5?"Black":"White";
- let online=Math.random()>0.35;
- let imgId=Math.floor(Math.random()*70);
- let img=race==="White"?`https://randomuser.me/api/portraits/men/${imgId%70}.jpg`:`https://i.pravatar.cc/300?img=${(imgId+10)%70}`;
+ let online=Math.random()>0.3;
+ let pid=Math.floor(Math.random()*70);
+ let img=getRealPhoto("men", race, pid + i + 30);
  profiles.push({name:n,age,loc,race,gender:"men",online,img});
 }
 profiles.sort(()=>Math.random()-0.5);
@@ -69,8 +85,8 @@ function render(list){
  grid.innerHTML="";
  list.forEach(p=>{
    let d=document.createElement('div');
-   d.className='card'; d.dataset.gender=p.gender; d.dataset.race=p.race.toLowerCase(); d.dataset.online=p.online; d.dataset.loc=p.loc.toLowerCase();
-   d.innerHTML=`<div style="position:relative"><img src="${p.img}" loading="lazy"><span class="lock">🔒 VIP</span></div><h3>${p.name}, ${p.age} - ${p.loc}</h3><p>${p.online?'🟢 Online':'⚪ Offline'} • ${p.race}</p>`;
+   d.className='card';
+   d.innerHTML=`<div style="position:relative"><img src="${p.img}" loading="lazy" onerror="this.src='https://randomuser.me/api/portraits/${p.gender==='women'?'women':'men'}/${Math.floor(Math.random()*70)}.jpg'"><span class="lock">🔒 VIP</span></div><h3>${p.name}, ${p.age}</h3><p style="font-size:10px">${p.loc}</p><p>${p.online?'🟢 Online Now':'⚪ Offline'} • ${p.race} • ${p.gender==='women'?'👩':'👨'}</p>`;
    grid.appendChild(d);
  });
 }
