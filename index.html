@@ -2,133 +2,53 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>chapchap. Nakuru - Fast Food 30 min</title>
+<title>chapchap. - Nakuru</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system}
-body{background:#fffbf0}
-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:white;position:sticky;top:0;z-index:20;box-shadow:0 2px 10px #0001}
-.logo{font-weight:900;font-size:24px} .logo span{color:#f59e0b}
-.cart-btn{background:#fbbf24;border:none;padding:10px 20px;border-radius:24px;font-weight:800;font-size:14px}
-.hero{padding:16px 20px 6px}
-.hero h1{font-size:28px;line-height:1.15} .hero h1 span{color:#0d9488}
-.hero p{color:#666;margin-top:8px;font-size:14px}
-.btn-yellow{background:#fbbf24;border:none;padding:12px 24px;border-radius:24px;font-weight:800;margin:12px 20px;font-size:15px}
-.card{background:white;border-radius:18px;padding:14px;margin:14px 18px;box-shadow:0 2px 12px #0001}
-.steps{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
-.step{min-width:120px;border-left:4px solid #10b981;padding:8px 12px;background:#f8fafc;border-radius:10px}
-.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px 16px}
-.food-card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 3px 12px #0001;border:1px solid #f3f4f6}
-.food-card img{width:100%;height:130px;object-fit:cover}
-.food-info{padding:10px 12px}
-.food-info b{font-size:14px;display:block;line-height:1.2}
-.food-price{color:#f59e0b;font-weight:900;margin-top:4px;font-size:15px}
-.add-btn{width:100%;background:#111;color:white;border:none;padding:9px;border-radius:10px;font-weight:700;margin-top:8px;font-size:13px}
-.add-btn.added{background:#16a34a}
-#cartBox{background:white;border:3px solid #fbbf24;border-radius:22px;padding:16px;margin:18px;box-shadow:0 6px 20px #0002}
-input{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:12px;margin:6px 0;background:#f9fafb}
-.btn{width:100%;padding:13px;border:none;border-radius:12px;font-weight:800;margin:6px 0;cursor:pointer;font-size:14px}
-.green{background:#16a34a;color:white} .blue{background:#2563eb;color:white} .dark{background:#111;color:white}
+body{background:#f8f8f8;padding-bottom:90px}
+.header{background:white;padding:16px 18px 12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px #0001}
+.top{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:34px;letter-spacing:-1.5px}
+.badge{position:absolute;top:-6px;right:-8px;background:#fbbf24;color:#000;font-weight:800;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.loc{margin-top:12px;background:white;border:1px solid #e5e7eb;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.search{margin-top:10px;background:#f3f4f6;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;color:#9ca3af;font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 12px}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.06);border:1px solid #f1f1f1}
+.card img{width:100%;height:132px;object-fit:cover;background:white}
+.info{padding:10px 11px 11px}
+.name{font-weight:800;font-size:15px;line-height:1.2} .desc{font-size:11.5px;color:#6b7280;margin-top:3px;line-height:1.25;height:28px;overflow:hidden}
+.bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.price{color:#f97316;font-weight:800;font-size:14.5px}
+.add{background:#111;color:white;border:none;border-radius:20px;padding:7px 14px;font-weight:700;font-size:12.5px}
+#cartBox{background:white;margin:14px;border:3px solid #fbbf24;border-radius:20px;padding:14px}
+.nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:10px 0 14px}
+.nav div{text-align:center;font-size:11px;color:#9ca3af} .nav .active{color:#fbbf24;font-weight:800}
+.btn{width:100%;padding:12px;border:none;border-radius:12px;font-weight:800;margin-top:8px;cursor:pointer}
+input{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;margin:6px 0}
 </style>
 </head>
 <body>
-<header>
-<div class="logo">chap<span>chap</span>.</div>
-<button class="cart-btn" onclick="document.getElementById('cartBox').scrollIntoView({behavior:'smooth'})">Cart (<span id="cCount">0</span>) Ksh <span id="cTotalH">0</span></button>
-</header>
-<div class="hero">
-<h1>We deliver from local kitchens to your <span>homes & offices in Nakuru</span></h1>
-<p>Pay directly with M-Pesa Till <b>0101133704</b> or PayPal - No WhatsApp chat needed. 30 min delivery.</p>
+<div class="header">
+<div class="top">
+<div class="logo">chapchap.</div>
+<div style="position:relative" onclick="document.getElementById('cartBox').scrollIntoView({behavior:'smooth'})"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M9 20a1 1 0 100-2 1 1 0 000 2zM20 20a1 1 0 100-2 1 1 0 000 2zM1 2h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><div class="badge" id="bCount">0</div></div>
 </div>
-<button class="btn-yellow" onclick="document.getElementById('menuTitle').scrollIntoView({behavior:'smooth'})">Order Now</button>
-<div class="card">
-<b style="font-size:16px">How it works - Direct Pay</b>
-<div class="steps" style="margin-top:12px">
-<div class="step"><b>1. Browse</b><br><small>Menu below</small></div>
-<div class="step" style="border-color:#f59e0b"><b>2. Tap ADD</b><br><small>To cart</small></div>
-<div class="step" style="border-color:#111"><b>3. Pay Direct</b><br><small>Till / PayPal</small></div>
-<div class="step"><b>4. Deliver</b><br><small>30 mins</small></div>
+<div class="loc">📍 Delivering to Nakuru • Now ▾</div>
+<div class="search">🔍 Search for food, drinks...</div>
 </div>
+<div class="grid" id="grid"></div><div id="cartBox">
+<div style="display:flex;justify-content:space-between;font-weight:900"><span>Your Cart</span><span>Ksh <span id="tTotal">0</span></span></div>
+<div id="cList" style="margin:10px 0;font-size:13px;background:#fffbeb;padding:10px;border-radius:10px">Empty - Tap + ADD above</div>
+<div style="color:#16a34a;font-weight:900">M-Pesa Till: 0101133704</div>
+<input id="phone" placeholder="Phone 07xx">
+<input id="loc2" placeholder="Location e.g. Lanet, Section 58">
+<input id="code" placeholder="M-Pesa Code e.g. QGH... or TEST123">
+<button class="btn" style="background:#16a34a;color:white" onclick="pay()">Confirm M-Pesa Order</button>
+<button class="btn" style="background:#111;color:white" onclick="pay()">Cash on Delivery</button>
 </div>
-<div id="menuTitle" style="padding:18px 18px 6px;font-weight:900;font-size:20px">Today Menu - Tap ADD</div>
-<div class="food-grid" id="foodGrid"></div>
-<div id="cartBox">
-<div style="display:flex;justify-content:space-between"><b style="font-size:18px">Your Cart</b><b style="font-size:18px">Ksh <span id="cTotal">0</span></b></div>
-<div id="cartList" style="font-size:14px;color:#666;margin:10px 0;background:#fffbeb;padding:10px;border-radius:10px">Empty - Tap ADD on food above</div>
-<div style="border:2px dashed #fbbf24;border-radius:14px;padding:12px;margin-top:6px">
-<div style="font-weight:800">Pay Directly - No WhatsApp</div>
-<div style="color:#16a34a;font-weight:900;font-size:18px;margin-top:6px">M-Pesa Till: 0101133704</div>
-<small>Amount: <b>Ksh <span class="amt">0</span></b> | PayPal: $<span class="usd">0</span></small>
-<input id="mpesaCode" placeholder="M-Pesa Code e.g. QGH... (or TEST123)">
-<input id="phone" placeholder="Your Phone 07xx">
-<input id="loc" placeholder="Location e.g. Lanet, Section 58">
-<button class="btn green" onclick="payMpesa()">I Have Paid - Confirm Order (Till)</button><div style="margin-top:12px">
-<a id="ppLink" href="#" target="_blank"><button class="btn blue">Pay with PayPal / Card</button></a>
-<button class="btn dark" style="background:white;color:#111;border:2px solid #111" onclick="payPaypal()">I Paid PayPal - Confirm</button>
-</div>
-<div style="margin-top:10px"><label><input type="checkbox" id="cod" style="width:auto"> Cash on Delivery</label></div>
-<button class="btn dark" onclick="payCod()">Confirm Cash Order</button>
-</div>
-</div>
+<div class="nav"><div class="active">🏠<br>Home</div><div>🔍<br>Search</div><div>📍<br>Orders</div><div>👤<br>Profile</div></div>
 <script>
 const foods=[
-{name:"Chicken & Chips",price:450,desc:"1/4 chicken + fries",img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641"},
-{name:"Burger & Chips",price:380,desc:"Beef burger + fries",img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0"},
-{name:"Fries + Soda",price:250,desc:"Large fries + 500ml soda",img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877"},
-{name:"Pilau Kuku",price:500,desc:"Swahili pilau + chicken",img:"https://images.unsplash.com/photo-1512058564366-18510be2db19"},
-{name:"Nyama Choma 1/4",price:650,desc:"Grilled meat + ugali",img:"https://images.unsplash.com/photo-1546964053-d9333494b1f3"},
-{name:"Family Bucket",price:1200,desc:"8 pcs chicken + 3 fries",img:"https://images.unsplash.com/photo-1562967914-608f82629710"},
-{name:"Fish & Chips",price:480,desc:"Tilapia + fries",img:"https://images.unsplash.com/photo-1579584425555-c3ce17fd4351"},
-{name:"Chapati + Beans",price:200,desc:"2 chapati + maharagwe",img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641"}
-];
-let cart=[];
-function render(){
-let h="";
-foods.forEach((f,i)=>{
-h+=`<div class="food-card"><img src="${f.img}"><div class="food-info"><b>${f.name}</b><small style="color:#666">${f.desc}</small><div class="food-price">Ksh ${f.price}</div><button class="add-btn" id="btn${i}" onclick="add(${i})">+ ADD</button></div></div>`;
-});
-document.getElementById("foodGrid").innerHTML=h;
-}
-function add(i){
-cart.push(foods[i]);
-let b=document.getElementById("btn"+i);
-b.innerText="ADDED"; b.classList.add("added");
-setTimeout(()=>{b.innerText="+ ADD"; b.classList.remove("added");},1200);
-update();
-}
-function update(){
-let total=0; let list="";
-cart.forEach((c,idx)=>{total+=c.price; list+=`${idx+1}. ${c.name} - ${c.price} <a onclick="rem(${idx})" style="color:red;cursor:pointer">[x]</a><br>`});
-if(!cart.length) list="Empty - Tap ADD on food above";
-document.getElementById("cartList").innerHTML=list;
-document.getElementById("cTotal").innerText=total;
-document.getElementById("cTotalH").innerText=total;
-document.getElementById("cCount").innerText=cart.length;
-document.querySelectorAll(".amt").forEach(e=>e.innerText=total);
-document.querySelectorAll(".usd").forEach(e=>e.innerText=(total/130).toFixed(2));
-let usd=Math.max(1,Math.ceil(total/130));
-document.getElementById("ppLink").href=`https://www.paypal.com/paypalme/tesla9stock/${usd}`;
-}
-function rem(i){cart.splice(i,1);update();}
-function orderText(method,code){
-let items=cart.map(c=>c.name).join(", ");
-let total=document.getElementById("cTotal").innerText;
-let ph=document.getElementById("phone").value||"";
-let lc=document.getElementById("loc").value||"";
-return `NEW ORDER ChapChap%0AMethod:${method}%0ACode:${code}%0ATotal:Ksh ${total}%0AItems:${items}%0APhone:${ph}%0ALoc:${lc}`;
-}
-function payMpesa(){
-if(!cart.length){alert("Tap ADD first!");return;}
-let code=document.getElementById("mpesaCode").value.trim();
-let ph=document.getElementById("phone").value.trim();
-let lc=document.getElementById("loc").value.trim();
-if(code.length<3){alert("Enter M-Pesa code or TEST123");return;}
-if(ph.length<9||lc.length<2){alert("Enter phone & location");return;}
-window.open("https://wa.me/254745064401?text="+orderText("M-Pesa Till 0101133704",code),"_blank");
-alert("Sent! We verify Till 0101133704");
-}
-function payPaypal(){if(!cart.length){alert("Tap ADD");return;} window.open("https://wa.me/254745064401?text="+orderText("PayPal","PAID"),"_blank");}
-function payCod(){if(!cart.length){alert("Tap ADD");return;} if(!document.getElementById("cod").checked){alert("Tick Cash box");return;} window.open("https://wa.me/254745064401?text="+orderText("Cash","CASH"),"_blank");}
-render();
-</script>
-</body>
-</html>
+{name:"Chicken & Chips",desc:"Crispy fried chicken with seasoned fries",price:350,img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600"},
+{name:"Burger & Chips",desc:"Juicy beef burger with crispy fries",price:400,img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=600"},
+{name:"Fries + Soda",desc:"Crispy fries served with cold soda",price:220,img:"https://images
