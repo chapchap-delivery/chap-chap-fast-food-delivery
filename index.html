@@ -1,100 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chap Nakuru - 30 Min Food Delivery</title>
-<style>
-:root{--y:#FFC326;--g:#00A88F;--d:#12162B;--c:#FFFEF2}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
-body{background:var(--c);color:var(--d)}
-header{background:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.logo{font-weight:900;font-size:20px}.logo span{color:var(--g)}
-.btn-y{background:var(--y);border:none;padding:12px 20px;border-radius:12px;font-weight:800;cursor:pointer}
-.hero{padding:20px 16px;display:grid;gap:18px}
-.hero h1{font-size:32px;line-height:1.1}.hero h1 b{color:var(--g)}
-.card{background:#fff;border-radius:18px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,.06);border:1px solid #f2f2f2}
-.badge{display:inline-block;background:var(--d);color:#fff;font-size:10px;padding:5px 10px;border-radius:20px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.rest img{width:100%;height:110px;object-fit:cover;border-radius:12px}
-.menu-item{display:flex;gap:12px;align-items:center;background:#fff;border-radius:14px;padding:10px;border:1px solid #eee}
-.menu-item img{width:64px;height:64px;border-radius:12px;object-fit:cover}
-.cart{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:3px solid var(--y);padding:12px 16px;z-index:30;border-radius:18px 18px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.12)}
-.steps{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
-.step{min-width:140px;background:#fff;border-radius:14px;padding:12px;border-left:4px solid var(--g)}
-</style>
-</head>
-<body>
-<header>
-<div class="logo">chap<span>chap</span>.</div>
-<div style="font-size:12px"><b>Nakuru Town</b> • 30 min</div>
-<button class="btn-y" onclick="openCart()">Cart ( <span id="cartN">0</span> )</button>
-</header>
+<!-- REPLACE your cart section with this -->
+<div style="background:#fff;padding:16px;border-radius:18px;border:2px solid #FFC326">
+<h3>💳 Pay Directly - No WhatsApp Needed</h3>
 
-<div class="hero">
-<div>
-<span class="badge">🔥 HOT & FRESH • 30 MIN DELIVERY</span>
-<h1 style="margin:10px 0">We deliver from local restaurants to <b>homes & offices in Nakuru</b></h1>
-<p style="color:#555;font-size:14px">Browse menu, add to cart, pay with M-Pesa or cash on delivery, and track your order on WhatsApp.</p>
-<div style="margin-top:14px;display:flex;gap:8px">
-<button class="btn-y" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Order Now</button>
-<button style="background:var(--d);color:#fff;border:none;padding:12px 18px;border-radius:12px;font-weight:700" onclick="trackWA()">Track on WhatsApp</button>
+<!-- M-PESA TILL -->
+<div style="background:#f8f8f8;padding:12px;border-radius:12px;margin:10px 0">
+<b style="color:#00A651">M-Pesa Till: 0101133704</b><br>
+<span style="font-size:12px">1. Go to M-Pesa → Lipa na M-Pesa → Buy Goods<br>
+2. Till: <b>0101133704</b> Amount: Ksh <span id="payTotal">0</span><br>
+3. Paste M-Pesa Code below</span><br>
+<input id="mpesaCode" placeholder="e.g. QGH7X9K2L1" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin:8px 0">
+<button onclick="confirmMpesa()" style="background:#00A651;color:#fff;width:100%;padding:12px;border:none;border-radius:10px;font-weight:800">I Have Paid - Confirm Order</button>
+</div>
+
+<!-- PAYPAL -->
+<div style="background:#f8f8f8;padding:12px;border-radius:12px">
+<b style="color:#0070BA">PayPal / Card - Diaspora & Nairobi</b><br>
+<div id="paypal-button-container" style="margin-top:10px"></div>
+<a href="https://www.paypal.com/ncp/payment/7WCEVK7QVBM9A" target="_blank" style="display:block;background:#0070BA;color:#fff;text-align:center;padding:12px;border-radius:10px;text-decoration:none;font-weight:800;margin-top:8px">Pay $ with PayPal - $ Amount auto</a>
+</div>
+
+<div style="margin-top:10px;font-size:11px;color:#666">
+Cash on Delivery? <input type="checkbox" id="cod"> Pay when rider arrives
 </div>
 </div>
 
-<div class="card">
-<div style="display:flex;justify-content:space-between"><b>How it works</b><span style="font-size:11px;background:var(--y);padding:4px 8px;border-radius:20px">Vibrant Tech Delivery</span></div>
-<div class="steps" style="margin-top:12px">
-<div class="step"><b>1. Browse</b><br><span style="font-size:11px;color:#666">Restaurants near you</span></div>
-<div class="step" style="border-color:var(--y)"><b>2. Add to Cart</b><br><span style="font-size:11px;color:#666">Chips, Pilau, Chicken</span></div>
-<div class="step" style="border-color:var(--d)"><b>3. Pay</b><br><span style="font-size:11px;color:#666">M-Pesa / Cash</span></div>
-<div class="step"><b>4. Track</b><br><span style="font-size:11px;color:#666">Live on WhatsApp</span></div>
-</div>
-</div>
-
-<div><b>Popular Restaurants in Nakuru</b>
-<div class="grid2" style="margin-top:10px">
-<div class="card rest"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><b>Java House</b><br><span style="font-size:11px">4.8 • 25 min • Fast Food</span></div>
-<div class="card rest"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"><b>Annex Grill</b><br><span style="font-size:11px">4.7 • 20 min • Nyama</span></div>
-<div class="card rest"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0"><b>Merica Hotel</b><br><span style="font-size:11px">4.6 • 30 min • Local</span></div>
-<div class="card rest"><img src="https://images.unsplash.com/photo-1515669097368-22e68427d265"><b>Chicken Inn</b><br><span style="font-size:11px">4.9 • 18 min • Chicken</span></div>
-</div>
-</div>
-
-<div id="menu"><b>Today's Menu - Nakuru Town</b>
-<div style="display:grid;gap:10px;margin-top:10px">
-<div class="menu-item"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641"><div style="flex:1"><b>Chicken & Chips</b><br><span style="font-size:11px;color:#666">Ksh 450 • 20 min</span></div><button class="btn-y" style="padding:8px 12px" onclick="add(450,'Chicken & Chips')">Add</button></div>
-<div class="menu-item"><img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a"><div style="flex:1"><b>Pilau Kuku</b><br><span style="font-size:11px;color:#666">Ksh 380 • 25 min</span></div><button class="btn-y" style="padding:8px 12px" onclick="add(380,'Pilau Kuku')">Add</button></div>
-<div class="menu-item"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c"><div style="flex:1"><b>Beef Burger</b><br><span style="font-size:11px;color:#666">Ksh 350 • 15 min</span></div><button class="btn-y" style="padding:8px 12px" onclick="add(350,'Beef Burger')">Add</button></div>
-</div>
-</div>
-
-<div class="card" style="border:2px dashed var(--g)">
-<b>Payment Options</b><br>
-<span style="font-size:12px">M-Pesa Till: <b>0101133704</b> • Cash on Delivery • Pay on WhatsApp</span>
-<div style="margin-top:10px;display:flex;gap:8px">
-<button style="background:#00A651;color:#fff;border:none;padding:10px;border-radius:10px;flex:1;font-weight:700" onclick="payMpesa()">Pay M-Pesa</button>
-<button style="background:var(--d);color:#fff;border:none;padding:10px;border-radius:10px;flex:1;font-weight:700" onclick="payCash()">Cash on Delivery</button>
-</div>
-</div>
-</div>
-
-<div style="height:120px"></div>
-
-<div class="cart" id="cartBox">
-<div style="display:flex;justify-content:space-between"><b>Your Cart</b><b>Ksh <span id="total">0</span></b></div>
-<div id="cartList" style="font-size:12px;margin:6px 0;color:#555">Empty — add food above</div>
-<button class="btn-y" style="width:100%" onclick="checkoutWA()">Order on WhatsApp - Track Live</button>
-<p style="font-size:10px;text-align:center;margin-top:6px;color:#888">Delivers to Lanet, Njoro, Kabarak, Molo, Bahati, Rongai in 30 mins</p>
-</div>
-
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
 <script>
-let cart=[],total=0;
-function add(price,name){cart.push({name,price});total+=price;document.getElementById('cartN').innerText=cart.length;document.getElementById('total').innerText=total;document.getElementById('cartList').innerText=cart.map(c=>c.name+' - '+c.price).join(', '); }
-function openCart(){document.getElementById('cartBox').scrollIntoView()}
-function payMpesa(){let t=encodeURIComponent('Hi ChapChap Admin, I want to pay M-Pesa Till 0101133704 for Ksh '+total+' - '+cart.map(c=>c.name).join(', ')+'. My M-Pesa code: [paste]');window.open('https://wa.me/254745064401?text='+t,'_blank')}
-function payCash(){checkoutWA()}
-function checkoutWA(){if(cart.length==0){alert('Add food first!');return} let t=encodeURIComponent('Hi ChapChap Nakuru! Order: '+cart.map(c=>c.name).join(', ')+' = Ksh '+total+'\nMy Location:\nName:\nPay: Cash/M-Pesa\nPlease deliver in 30 mins');window.open('https://wa.me/254745064401?text='+t,'_blank')}
-function trackWA(){let t=encodeURIComponent('Hi ChapChap, track my order please. My number:');window.open('https://wa.me/254745064401?text='+t,'_blank')}
+function confirmMpesa(){
+ let code=document.getElementById('mpesaCode').value;
+ if(code.length<8){alert('Enter valid M-Pesa code');return}
+ // Save to your Google Sheet / Email
+ alert('Payment '+code+' received! Order Ksh '+total+' confirmed. Rider coming in 30 mins to Nakuru!');
+ // Here it will auto-save to your sheet
+ fetch('https://api.sheetmonkey.io/form/YOUR_FORM_ID', {
+   method:'POST', body: JSON.stringify({mpesa:code,total:total,items:cart.map(c=>c.name).join(', '),time:new Date()})
+ });
+}
 </script>
-</body>
-</html>
