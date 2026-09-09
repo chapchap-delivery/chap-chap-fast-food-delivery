@@ -13,8 +13,7 @@ body{background:#f8f8f8;padding-bottom:90px}
 .loc{margin-top:12px;background:white;border:1px solid #e5e7eb;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
 .search{margin-top:10px;background:#f3f4f6;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;color:#9ca3af;font-size:14px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 12px}
-.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.06);border:1px solid #f1f1f1}
-.card img{width:100%;height:132px;object-fit:cover;background:white}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.06);border:1px solid #f1f1f1}.card img{width:100%;height:132px;object-fit:cover;background:white}
 .info{padding:10px 11px 11px}
 .name{font-weight:800;font-size:15px;line-height:1.2} .desc{font-size:11.5px;color:#6b7280;margin-top:3px;line-height:1.25;height:28px;overflow:hidden}
 .bottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
@@ -36,13 +35,13 @@ input{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;margin:6p
 <div class="loc">📍 Delivering to Nakuru • Now ▾</div>
 <div class="search">🔍 Search for food, drinks...</div>
 </div>
-<div class="grid" id="grid"></div><div id="cartBox">
-<div style="display:flex;justify-content:space-between;font-weight:900"><span>Your Cart</span><span>Ksh <span id="tTotal">0</span></span></div>
-<div id="cList" style="margin:10px 0;font-size:13px;background:#fffbeb;padding:10px;border-radius:10px">Empty - Tap + ADD above</div>
+<div class="grid" id="grid"></div>
+<div id="cartBox">
+<div style="display:flex;justify-content:space-between;font-weight:900"><span>Your Cart</span><span>Ksh <span id="tTotal">0</span></span></div><div id="cList" style="margin:10px 0;font-size:13px;background:#fffbeb;padding:10px;border-radius:10px">Empty - Tap + ADD above</div>
 <div style="color:#16a34a;font-weight:900">M-Pesa Till: 0101133704</div>
 <input id="phone" placeholder="Phone 07xx">
-<input id="loc2" placeholder="Location e.g. Lanet, Section 58">
-<input id="code" placeholder="M-Pesa Code e.g. QGH... or TEST123">
+<input id="loc2" placeholder="Location e.g. Lanet">
+<input id="code" placeholder="M-Pesa Code e.g. QGH...">
 <button class="btn" style="background:#16a34a;color:white" onclick="pay()">Confirm M-Pesa Order</button>
 <button class="btn" style="background:#111;color:white" onclick="pay()">Cash on Delivery</button>
 </div>
@@ -59,13 +58,11 @@ const foods=[
 {name:"Chapati + Beans",desc:"Soft chapati served with stewed beans",price:180,img:"https://images.unsplash.com/photo-1585937421612-70a008356c36?w=600"}
 ];
 let cart=[];
-function render(){
-let h=""; foods.forEach((f,i)=>{h+=`<div class="card"><img src="${f.img}"><div class="info"><div class="name">${f.name}</div><div class="desc">${f.desc}</div><div class="bottom"><div class="price">Ksh ${f.price}</div><button class="add" id="b${i}" onclick="add(${i})">+ ADD</button></div></div></div>`}); document.getElementById("grid").innerHTML=h;
-}
-function add(i){cart.push(foods[i]); let b=document.getElementById("b"+i); b.textContent="ADDED"; setTimeout(()=>b.textContent="+ ADD",1000); upd();}
-function upd(){let t=0,s=""; cart.forEach((c,idx)=>{t+=c.price; s+=`${idx+1}. ${c.name} - ${c.price} <span onclick="cart.splice(${idx},1);upd()" style="color:red">[x]</span><br>`}); if(!cart.length) s="Empty - Tap + ADD above"; document.getElementById("cList").innerHTML=s; document.getElementById("tTotal").innerText=t; document.getElementById("bCount").innerText=cart.length;}
-function pay(){if(!cart.length){alert("Add food first");return} let ph=document.getElementById("phone").value; let lc=document.getElementById("loc2").value; let cd=document.getElementById("code").value||"CASH"; if(ph.length<9){alert("Enter phone");return} let items=cart.map(c=>c.name).join(", "); let tot=document.getElementById("tTotal").innerText; window.open(`https://wa.me/254745064401?text=NEW ORDER ChapChap%0ATotal:Ksh ${tot}%0AItems:${items}%0APhone:${ph}%0ALoc:${lc}%0ACode:${cd}`,"_blank");}
-render(); upd();
+function render(){let h="";foods.forEach((f,i)=>{h+=`<div class="card"><img src="${f.img}"><div class="info"><div class="name">${f.name}</div><div class="desc">${f.desc}</div><div class="bottom"><div class="price">Ksh ${f.price}</div><button class="add" id="b${i}" onclick="add(${i})">+ ADD</button></div></div></div>`});document.getElementById("grid").innerHTML=h}
+function add(i){cart.push(foods[i]);let b=document.getElementById("b"+i);b.textContent="ADDED";setTimeout(()=>b.textContent="+ ADD",1000);upd()}
+function upd(){let t=0,s="";cart.forEach((c,idx)=>{t+=c.price;s+=`${idx+1}. ${c.name} - ${c.price} <span onclick="cart.splice(${idx},1);upd()" style="color:red">[x]</span><br>`});if(!cart.length)s="Empty - Tap + ADD above";document.getElementById("cList").innerHTML=s;document.getElementById("tTotal").innerText=t;document.getElementById("bCount").innerText=cart.length}
+function pay(){if(!cart.length){alert("Add food first");return}let ph=document.getElementById("phone").value;let lc=document.getElementById("loc2").value;let cd=document.getElementById("code").value||"CASH";if(ph.length<9){alert("Enter phone");return}let items=cart.map(c=>c.name).join(", ");let tot=document.getElementById("tTotal").innerText;window.open(`https://wa.me/254745064401?text=NEW ORDER ChapChap%0ATotal:Ksh ${tot}%0AItems:${items}%0APhone:${ph}%0ALoc:${lc}%0ACode:${cd}`,"_blank")}
+render();upd();
 </script>
 </body>
 </html>
