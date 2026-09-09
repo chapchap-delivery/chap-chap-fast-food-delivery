@@ -51,4 +51,21 @@ input{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;margin:6p
 const foods=[
 {name:"Chicken & Chips",desc:"Crispy fried chicken with seasoned fries",price:350,img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600"},
 {name:"Burger & Chips",desc:"Juicy beef burger with crispy fries",price:400,img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=600"},
-{name:"Fries + Soda",desc:"Crispy fries served with cold soda",price:220,img:"https://images
+{name:"Fries + Soda",desc:"Crispy fries served with cold soda",price:220,img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600"},
+{name:"Pilau Kuku",desc:"Fragrant spiced rice with tender chicken",price:380,img:"https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600"},
+{name:"Nyama Choma",desc:"Grilled beef with kachumbari & salt",price:650,img:"https://images.unsplash.com/photo-1546964053-d9333494b1f3?w=600"},
+{name:"Family Bucket",desc:"8-pc crispy chicken for the family",price:1200,img:"https://images.unsplash.com/photo-1562967914-608f82629710?w=600"},
+{name:"Fish & Chips",desc:"Crispy battered fish with golden fries",price:500,img:"https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=600"},
+{name:"Chapati + Beans",desc:"Soft chapati served with stewed beans",price:180,img:"https://images.unsplash.com/photo-1585937421612-70a008356c36?w=600"}
+];
+let cart=[];
+function render(){
+let h=""; foods.forEach((f,i)=>{h+=`<div class="card"><img src="${f.img}"><div class="info"><div class="name">${f.name}</div><div class="desc">${f.desc}</div><div class="bottom"><div class="price">Ksh ${f.price}</div><button class="add" id="b${i}" onclick="add(${i})">+ ADD</button></div></div></div>`}); document.getElementById("grid").innerHTML=h;
+}
+function add(i){cart.push(foods[i]); let b=document.getElementById("b"+i); b.textContent="ADDED"; setTimeout(()=>b.textContent="+ ADD",1000); upd();}
+function upd(){let t=0,s=""; cart.forEach((c,idx)=>{t+=c.price; s+=`${idx+1}. ${c.name} - ${c.price} <span onclick="cart.splice(${idx},1);upd()" style="color:red">[x]</span><br>`}); if(!cart.length) s="Empty - Tap + ADD above"; document.getElementById("cList").innerHTML=s; document.getElementById("tTotal").innerText=t; document.getElementById("bCount").innerText=cart.length;}
+function pay(){if(!cart.length){alert("Add food first");return} let ph=document.getElementById("phone").value; let lc=document.getElementById("loc2").value; let cd=document.getElementById("code").value||"CASH"; if(ph.length<9){alert("Enter phone");return} let items=cart.map(c=>c.name).join(", "); let tot=document.getElementById("tTotal").innerText; window.open(`https://wa.me/254745064401?text=NEW ORDER ChapChap%0ATotal:Ksh ${tot}%0AItems:${items}%0APhone:${ph}%0ALoc:${lc}%0ACode:${cd}`,"_blank");}
+render(); upd();
+</script>
+</body>
+</html>
