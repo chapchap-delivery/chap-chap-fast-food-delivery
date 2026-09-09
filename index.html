@@ -1,44 +1,108 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>chapchap. - Nakuru</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,sans-serif;background:#F7F7F7}.hdr{background:#FFC72C;padding:12px 16px;position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px}.logo{font-weight:900;font-size:26px}.loc{background:#fff;border-radius:20px;padding:8px 12px;flex:1;font-size:12px}.ic{width:36px;height:36px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px 120px}.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06)}.card img{width:100%;height:115px;object-fit:cover}.inf{padding:8px}.nm{font-weight:700;font-size:12px}.ds{font-size:10px;color:#777}.prc{font-weight:800;font-size:12px;color:#00A082}.add{width:100%;margin-top:6px;background:#FFC72C;border:0;border-radius:20px;padding:7px;font-weight:800}.cartBar{position:fixed;bottom:0;left:0;right:0;background:#fff;box-shadow:0 -4px 20px rgba(0,0,0,.1);border-radius:20px 20px 0 0;padding:12px 16px;z-index:40;display:none}.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:60;display:none;align-items:center;justify-content:center;padding:16px}.box{background:#fff;border-radius:20px;padding:18px;width:100%;max-width:380px}.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0}.btn{width:100%;padding:13px;border:0;border-radius:12px;font-weight:800;margin-top:8px}.mp{background:#00A651;color:#fff}.bl{background:#000;color:#fff}</style></head><body>
-<div class="hdr"><div class="logo">chapchap.</div><div class="loc">📍 Nakuru • 01 1953 9151 • KMGK 285M</div><button class="ic" onclick="openOrders()">📦</button></div>
-<div class="hdr" style="background:#000;color:#fff;font-size:11px">🛵 Delivery by us • Send Money to 0119539151 • Money comes DIRECT to phone • Plate KMGK 285M</div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chapchap. - Food Delivery Nakuru</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#F7F7F7}
+.hdr{background:#FFC72C;padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10}
+.logo{font-weight:900;font-size:26px}
+.loc{background:#fff;border-radius:20px;padding:8px 12px;flex:1;font-size:12px}
+.ic{width:36px;height:36px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px 120px}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.card img{width:100%;height:115px;object-fit:cover}
+.inf{padding:8px}
+.nm{font-weight:700;font-size:13px}
+.prc{font-weight:800;font-size:13px;color:#00A082;margin-top:4px}
+.add{width:100%;margin-top:6px;background:#FFC72C;border:0;border-radius:20px;padding:8px;font-weight:800}
+.cartBar{position:fixed;bottom:0;left:0;right:0;background:#fff;box-shadow:0 -4px 20px rgba(0,0,0,.1);border-radius:20px 20px 0 0;padding:12px 16px;z-index:20;display:none}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+.box{background:#fff;border-radius:20px;padding:20px;width:100%;max-width:380px;max-height:90vh;overflow:auto}
+.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0}
+.btn{width:100%;padding:14px;border:0;border-radius:12px;font-weight:900;margin-top:10px}
+.mp{background:#00A651;color:#fff}
+.bl{background:#000;color:#fff}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+<div class="logo">chapchap.</div>
+<div class="loc">📍 Nakuru • Rider 01 1953 9151 • KMGK 285M</div>
+<button class="ic" onclick="openOrders()">📦</button>
+</div>
+
+<div style="background:#000;color:#fff;padding:10px 16px;font-size:11px;text-align:center">
+🛵 Delivery by us • Send Money to <b>0119539151</b> • Money DIRECT to phone • Plate KMGK 285M
+</div>
+
 <div class="grid" id="grid"></div>
-<div class="cartBar" id="cartBar"><div style="font-size:11px;background:#FFF8E1;padding:6px;border-radius:8px">🛵 Rider 01 1953 9151 • KMGK 285M</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px"><div><div id="cCount" style="font-size:11px;color:#777"></div><div id="cTotal" style="font-weight:900"></div></div><button class="btn bl" style="width:auto;margin:0;padding:10px 20px" onclick="openCheck()">PAY</button></div></div>
 
-<div class="modal" id="checkM"><div class="box"><h3>Pay • Send Money</h3><input class="inp" id="delAddr" placeholder="Delivery address in Nakuru - REQUIRED"><div id="orderList" style="font-size:12px;margin:8px 0"></div><div style="background:#F7F7F7;padding:10px;border-radius:10px;font-size:12px"><div style="display:flex;justify-content:space-between"><span>Food</span><span id="foodTotal"></span></div><div style="display:flex;justify-content:space-between"><span>Delivery KMGK 285M</span><span>Ksh 100</span></div><div style="display:flex;justify-content:space-between;font-weight:900;border-top:1px solid #ddd;margin-top:6px;padding-top:6px"><span>TOTAL SEND</span><span id="payTotal"></span></div></div>
+<div class="cartBar" id="cartBar">
+<div style="font-size:11px;background:#FFF8E1;padding:6px;border-radius:8px">🛵 Rider 01 1953 9151 • Plate KMGK 285M</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+<div><div id="cCount" style="font-size:11px;color:#777"></div><div id="cTotal" style="font-weight:900"></div></div>
+<button class="btn bl" style="width:auto;margin:0;padding:10px 20px" onclick="openCheck()">PAY</button>
+</div>
+</div>
 
-<div style="background:#00A651;color:#fff;padding:12px;border-radius:12px;margin-top:12px;text-align:center">
+<div class="modal" id="checkM">
+<div class="box">
+<h3>Pay - Send Money</h3>
+<input class="inp" id="delAddr" placeholder="Your delivery address in Nakuru">
+<div id="orderList" style="font-size:12px;margin:8px 0"></div>
+<div style="background:#F7F7F7;padding:10px;border-radius:10px;font-size:12px">
+<div style="display:flex;justify-content:space-between"><span>Food</span><span id="foodTotal"></span></div>
+<div style="display:flex;justify-content:space-between"><span>Delivery KMGK 285M</span><span>Ksh 100</span></div>
+<div style="display:flex;justify-content:space-between;font-weight:900;border-top:1px solid #ddd;margin-top:6px;padding-top:6px"><span>TOTAL</span><span id="payTotal"></span></div>
+</div>
+
+<div style="background:#00A651;color:#fff;padding:15px;border-radius:14px;margin-top:12px;text-align:center">
 <div style="font-weight:900">📱 M-PESA SEND MONEY</div>
-<div style="font-size:13px;margin-top:6px">Send <b id="mpAmtText">Ksh 0</b> to</div>
-<div style="font-size:22px;font-weight:900;letter-spacing:1px;margin:4px 0">0119539151</div>
-<div style="font-size:11px">Name: James • Plate KMGK 285M</div>
+<div style="margin-top:6px">Send <b id="mpAmtText">Ksh 0</b> to</div>
+<div style="font-size:28px;font-weight:900;margin:6px 0">0119539151</div>
+<div style="font-size:11px">James • KMGK 285M</div>
 </div>
 
-<div style="background:#FFF8E1;padding:10px;border-radius:10px;margin-top:10px;font-size:11px">
-<b>STEPS:</b><br>
-1. M-Pesa → Send Money → 0119539151<br>
-2. Amount <span id="mpAmt2"></span><br>
-3. Come back → Click CONFIRM below
+<button class="btn mp" onclick="confirmPay()">✅ I HAVE SENT MONEY - CONFIRM ORDER</button>
+<div style="text-align:center;margin-top:10px;font-size:11px;color:#777" onclick="closeCheck()">Cancel</div>
+</div>
 </div>
 
-<button class="btn mp" onclick="confirmPay()">✅ I HAVE SENT MONEY TO 0119539151 - CONFIRM ORDER</button>
-<button class="btn bl" onclick="payPaypal()">💳 Pay with PayPal (optional)</button>
-<div style="text-align:center;margin-top:10px;font-size:11px" onclick="closeCheck()">Cancel</div>
-</div></div>
-
-<div class="modal" id="orderM"><div class="box"><h3>Order Confirmed! 🎉</h3><div id="ordersBox"></div><div style="background:#FFF8E1;padding:12px;border-radius:12px;margin-top:10px"><div style="font-weight:900">🛵 Rider Tracking</div><div style="font-size:12px;margin-top:6px">Rider: James<br>Phone: <b>01 1953 9151</b><br>Plate: <b>KMGK 285M</b><br>ETA: 25 min</div><a href="tel:0119539151" style="background:#000;color:#fff;padding:12px;display:block;text-align:center;border-radius:20px;margin-top:10px;text-decoration:none;font-weight:900">📞 CALL RIDER 01 1953 9151</a></div><div style="text-align:center;margin-top:12px"><span style="background:#000;color:#fff;padding:8px 18px;border-radius:20px;font-size:12px" onclick="closeOrders()">Close</span></div></div></div>
+<div class="modal" id="orderM">
+<div class="box">
+<h3>Order Confirmed! 🎉</h3>
+<div id="ordersBox" style="font-size:12px"></div>
+<div style="background:#FFF8E1;padding:12px;border-radius:12px;margin-top:12px">
+<b>🛵 Rider: 01 1953 9151<br>🏍️ Plate: KMGK 285M</b><br>
+<a href="tel:0119539151" style="background:#000;color:#fff;padding:12px;display:block;text-align:center;border-radius:20px;margin-top:10px;text-decoration:none">📞 CALL RIDER 0119539151</a>
+</div>
+<div style="text-align:center;margin-top:12px"><span style="background:#000;color:#fff;padding:8px 18px;border-radius:20px;font-size:12px" onclick="closeOrders()">Close</span></div>
+</div>
+</div>
 
 <script>
-const foods=[{n:"Chicken & Chips",p:350,img:"https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400"},{n:"Burger & Chips",p:400,img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=400"},{n:"Fries + Soda",p:250,img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400"},{n:"Pilau Kuku",p:450,img:"https://images.unsplash.com/photo-1595755433128-d6c1914106d2?w=400"},{n:"Nyama Choma",p:650,img:"https://images.unsplash.com/photo-1546964052-d44c49c85ca5?w=400"},{n:"Family Bucket",p:1200,img:"https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=400"}];
+const foods=[
+{n:"Chicken & Chips",p:350,img:"https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400"},
+{n:"Burger & Chips",p:400,img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=400"},
+{n:"Fries + Soda",p:250,img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400"},
+{n:"Pilau Kuku",p:450,img:"https://images.unsplash.com/photo-1595755433128-d6c1914106d2?w=400"},
+{n:"Nyama Choma",p:650,img:"https://images.unsplash.com/photo-1546964052-d44c49c85ca5?w=400"},
+{n:"Family Bucket",p:1200,img:"https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=400"}
+];
 let cart=[],orders=JSON.parse(localStorage.getItem('o')||'[]');
 function render(){document.getElementById('grid').innerHTML=foods.map((f,i)=>`<div class="card"><img src="${f.img}"><div class="inf"><div class="nm">${f.n}</div><div class="prc">Ksh ${f.p}</div><button class="add" onclick="add(${i})">+ Add</button></div></div>`).join('');}
 function add(i){cart.push(foods[i]);upd();}
 function upd(){if(!cart.length){document.getElementById('cartBar').style.display='none';return;}document.getElementById('cartBar').style.display='block';let ft=cart.reduce((s,x)=>s+x.p,0),tot=ft+100;document.getElementById('cCount').innerText=cart.length+' items';document.getElementById('cTotal').innerText='Send Ksh '+tot+' to 0119539151';}
-function openCheck(){if(!cart.length)return;let ft=cart.reduce((s,x)=>s+x.p,0),tot=ft+100;document.getElementById('orderList').innerHTML=cart.map(c=>c.n+' - Ksh '+c.p).join('<br>');document.getElementById('foodTotal').innerText='Ksh '+ft;document.getElementById('payTotal').innerText='Ksh '+tot;document.getElementById('mpAmtText').innerText='Ksh '+tot;document.getElementById('mpAmt2').innerText='Ksh '+tot;document.getElementById('checkM').style.display='flex';}
+function openCheck(){if(!cart.length)return;let ft=cart.reduce((s,x)=>s+x.p,0),tot=ft+100;document.getElementById('orderList').innerHTML=cart.map(c=>c.n+' Ksh '+c.p).join('<br>');document.getElementById('foodTotal').innerText='Ksh '+ft;document.getElementById('payTotal').innerText='Ksh '+tot;document.getElementById('mpAmtText').innerText='Ksh '+tot;document.getElementById('checkM').style.display='flex';}
 function closeCheck(){document.getElementById('checkM').style.display='none';}
-function confirmPay(){let addr=document.getElementById('delAddr').value;if(!addr){alert('Please enter delivery address first!');return;}let ft=cart.reduce((s,x)=>s+x.p,0),tot=ft+100;let o={id:'CHAP'+Date.now(),items:[...cart],total:tot,addr:addr,time:new Date().toLocaleString()};orders.push(o);localStorage.setItem('o',JSON.stringify(orders));alert('✅ ORDER CONFIRMED!\n\nYou said you sent Ksh '+tot+' to 0119539151\nDelivery to: '+addr+'\n\n🛵 Rider James 01 1953 9151 Plate KMGK 285M is coming!\nI will call you now to confirm.');cart=[];upd();closeCheck();openOrders();showOrders();}
-function payPaypal(){let addr=document.getElementById('delAddr').value;if(!addr){alert('Enter address first');return;}let tot=cart.reduce((s,x)=>s+x.p,0)+100;window.open('https://www.paypal.com/ncp/payment/YOURID','_blank');let o={id:'CHAP'+Date.now(),items:[...cart],total:tot,addr:addr,time:new Date().toLocaleString()};orders.push(o);localStorage.setItem('o',JSON.stringify(orders));cart=[];upd();closeCheck();openOrders();}
-function openOrders(){showOrders();document.getElementById('orderM').style.display='flex';}
+function confirmPay(){let addr=document.getElementById('delAddr').value;if(!addr){alert('Enter delivery address!');return;}let tot=cart.reduce((s,x)=>s+x.p,0)+100;let o={id:'CHAP'+Date.now(),items:[...cart],total:tot,addr:addr,time:new Date().toLocaleString()};orders.push(o);localStorage.setItem('o',JSON.stringify(orders));alert('✅ ORDER CONFIRMED!\nSent Ksh '+tot+' to 0119539151\nTo: '+addr+'\nRider 01 1953 9151 KMGK 285M coming!');cart=[];upd();closeCheck();openOrders();}
+function openOrders(){let b=document.getElementById('ordersBox');if(!orders.length){b.innerHTML='No orders yet';}else{b.innerHTML=orders.slice().reverse().map(o=>`<div style="border:1px solid #eee;padding:10px;border-radius:10px;margin-bottom:8px"><b>${o.id}</b><br>${o.items.map(i=>i.n).join(', ')}<br>Ksh ${o.total} to 0119539151<br>To: ${o.addr}</div>`).join('');}document.getElementById('orderM').style.display='flex';}
 function closeOrders(){document.getElementById('orderM').style.display='none';}
-function showOrders(){let b=document.getElementById('ordersBox');if(!orders.length){b.innerHTML='No orders yet';return;}b.innerHTML=orders.slice().reverse().map(o=>`<div style="border:1px solid #eee;padding:10px;border-radius:10px;margin-bottom:8px;font-size:12px"><b>${o.id}</b><br>${o.items.map(i=>i.n).join(', ')}<br>Total Ksh ${o.total} sent to 0119539151<br>To: ${o.addr}<br>🛵 01 1953 9151 KMGK 285M</div>`).join('');}
-render();showOrders();
-</script></body></html>
+render();
+</script>
+</body>
+</html>
