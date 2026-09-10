@@ -1,52 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ChapChap - Eldoret Fast Food</title><style>*{box-sizing:border-box;margin:0;font-family:system-ui}body{background:#f6f6f6;padding-bottom:90px}.top{background:#FFC107;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}.logo{font-weight:900;font-size:24px}.icons{display:flex;gap:10px;align-items:center}.iconBtn{background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:16px;box-shadow:0 2px 6px #0002}.pill{background:#fff;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:800;box-shadow:0 2px 6px #0002}.searchWrap{padding:10px 12px;background:#fff;display:flex;gap:8px}.search{flex:1;padding:12px 14px;border-radius:12px;border:1px solid #ddd;background:#f2f2f2}.catWrap{overflow-x:auto;white-space:nowrap;padding:10px 12px;background:#fff}.cat{display:inline-block;background:#FFE8D6;border-radius:20px;padding:8px 14px;margin-right:8px;font-weight:700;font-size:13px;cursor:pointer}.cat.active{background:#111;color:#fff}.banner{margin:12px;background:#111;color:#fff;border-radius:18px;padding:14px;line-height:1.6;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px}.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 2px 8px #0001}.card img{width:100%;height:130px;object-fit:cover}.price{color:#00a884;font-weight:900}.btn{width:100%;background:#FFC107;border:0;border-radius:10px;padding:9px;font-weight:900;margin-top:6px}.cartBar{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:16px;text-align:center;font-weight:900;z-index:99;cursor:pointer}.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:100;padding:14px}.modal.open{display:flex}.box{background:#fff;width:100%;max-width:420px;border-radius:16px;padding:18px;max-height:90vh;overflow:auto}.inp{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:8px}.btnGreen{width:100%;background:#00a884;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:10px}.btnBlue{width:100%;background:#0070ba;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:8px}</style></head><body>
-<div class="top"><div class="logo">chapchap.</div><div class="icons"><div class="pill">📍Eldoret • Rider 0786673688</div><button class="iconBtn" onclick="openLogin()">👤</button></div></div>
-<div class="searchWrap"><input id="search" class="search" placeholder="Search chapati, pilau, chips..."><button class="iconBtn" style="border-radius:12px;width:48px">🔍</button></div>
-<div class="catWrap"><span class="cat active" onclick="filterCat(this,'All')">All</span><span class="cat" onclick="filterCat(this,'Chapati')">Chapati</span><span class="cat" onclick="filterCat(this,'Pilau')">Pilau</span><span class="cat" onclick="filterCat(this,'Chips')">Chips</span><span class="cat" onclick="filterCat(this,'Chicken')">Chicken</span><span class="cat" onclick="filterCat(this,'Soda')">Soda</span></div>
-<div class="banner"><b>🔥 Glovo Style Delivery Eldoret</b><br>🛵 Rider CALL: <b>0786673688</b> Plate KMGK 285M<br>💰 Send Money to <b>0119539151</b> (Direct)<br>💳 PayPal Available • WhatsApp: <b>0119539151</b><br>Delivery Ksh 100</div>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chap Chap Delivery - Kenya</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#f8f8f8}
+.header{background:#fff;padding:14px 18px;position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,.06);z-index:10}
+.logo{font-weight:900;font-size:21px}.logo span{color:#ff6b00}
+.tag{font-size:11px;color:#666}
+.cart-btn{background:#111;color:#fff;border:0;padding:10px 16px;border-radius:22px;font-weight:800}
+.hero{padding:18px 18px 8px}
+.grid{padding:8px 10px 130px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.card img{width:100%;height:125px;object-fit:cover}
+.card-body{padding:10px}
+.price{color:#ff6b00;font-weight:900}
+.add{width:100%;margin-top:8px;background:#111;color:#fff;border:0;padding:9px;border-radius:10px;font-weight:800}
+.drawer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:22px 22px 0 0;padding:18px;transform:translateY(112%);transition:.32s;z-index:20;max-height:90vh;overflow:auto}
+.drawer.open{transform:translateY(0)}
+.pay-opt{border:2px solid #eee;border-radius:12px;padding:12px;margin:8px 0;display:flex;gap:12px;cursor:pointer}
+.pay-opt.active{border-color:#ff6b00;background:#fff5ef}
+.input{width:100%;padding:13px;border-radius:12px;border:1.5px solid #ddd;margin-top:8px;font-size:15px}
+.rider-box{background:#fff4e6;border:1.5px dashed #ff6b00;padding:14px;border-radius:14px;margin-top:14px}
+.btn{width:100%;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:10px;font-size:15px}
+.btn-dark{background:#111;color:#fff}
+.btn-wa{background:#25D366;color:#fff}
+.btn-orange{background:#ff6b00;color:#fff}
+</style></head><body>
+<div class="header"><div><div class="logo">Chap Chap Delivery<span>.</span></div><div class="tag">🇰🇪 Kenya • Rider 20 mins</div></div><button class="cart-btn" onclick="toggleCart()">🛒 <span id="cart-count">0</span></button></div>
+<div class="hero"><h2>Fast food, delivered chap chap.</h2><p style="color:#666;font-size:13px;margin-top:4px">M-Pesa 0119539151 • PayPal • Rider 0786673688</p></div>
 <div class="grid" id="grid"></div>
-<div class="cartBar" id="cartBar" onclick="openCart()">Cart (0) - Ksh 0 • Tap to Checkout</div>
-
-<!-- CART MODAL -->
-<div class="modal" id="cartModal"><div class="box"><h3>🛒 Your Cart</h3><div id="cartList" style="margin:12px 0"></div><div id="cartTotal" style="font-weight:900;font-size:18px"></div>
-<div style="background:#FFF8E1;padding:12px;border-radius:12px;margin-top:12px;font-size:13px;line-height:1.6">
-<b>How to Pay</b><br>
-1. M-Pesa Send Money to: <b>0119539151</b><br>
-2. CALL Rider if lost: <b>0786673688</b><br>
-<input id="mpCode" class="inp" placeholder="M-Pesa Code e.g. QGJ..."><input id="mpPhone" class="inp" placeholder="Your M-Pesa Phone"><input id="custLoc" class="inp" placeholder="Your Location in Eldoret (e.g. Elgon View)">
+<div class="drawer" id="cartDrawer">
+<h3>Your Order</h3><div id="cartItems" style="margin:12px 0;color:#888">Cart empty</div>
+<div style="font-weight:900">Total: KES <span id="total">0</span> / $<span id="totalUSD">0</span></div>
+<h4 style="margin-top:16px">Payment (No Cash)</h4>
+<div class="pay-opt active" onclick="selectPay(this,'M-Pesa Send Money')"><span>📱</span><div><b>M-Pesa Send Money</b><br><small>To: <b>0119539151</b> - Erick Muriithi</small></div></div>
+<div class="pay-opt" onclick="selectPay(this,'PayPal')"><span>💳</span><div><b>PayPal - Erick Muriithi</b><br><small>Customer sets amount - USD</small></div></div>
+<input id="phone" class="input" placeholder="Your M-Pesa number">
+<input id="location" class="input" placeholder="Delivery location">
+<div class="rider-box">
+<b>🏍️ Your Rider - 0786673688</b><br><small>Rider will call after payment</small>
+<button class="btn btn-orange" onclick="window.open('tel:0786673688','_self')">📞 Call Rider Now</button>
+<button class="btn btn-dark" style="padding:10px" onclick="window.open('https://wa.me/254786673688','_blank')">💬 WhatsApp Rider</button>
 </div>
-<button class="btnGreen" onclick="placeMpesa()">Pay M-Pesa & WhatsApp to 0119539151</button>
-<button class="btnBlue" onclick="placePaypal()">💳 Pay with PayPal</button>
-<button onclick="closeCart()" style="width:100%;margin-top:8px;background:#eee;border:0;padding:12px;border-radius:12px">Continue Shopping</button>
-</div></div>
-
-<!-- LOGIN MODAL -->
-<div class="modal" id="loginModal"><div class="box"><h3>👤 Login / Sign Up</h3><p style="font-size:13px;color:#666;margin:6px 0">Login to save your orders</p><input id="loginName" class="inp" placeholder="Your Name"><input id="loginPhone" class="inp" placeholder="Phone e.g. 0119539151"><button class="btnGreen" onclick="doLogin()">Login</button><div id="profileArea" style="display:none;margin-top:12px;padding:12px;background:#f2f2f2;border-radius:10px"></div><button onclick="closeLogin()" style="width:100%;margin-top:8px;background:#eee;border:0;padding:12px;border-radius:12px">Close</button></div></div>
-
+<button class="btn btn-dark" onclick="placeOrder()">Pay Now - KES <span id="payTotal">0</span></button>
+<button class="btn btn-wa" onclick="orderWhatsApp()">✅ Confirm via WhatsApp</button>
+<button onclick="toggleCart()" style="width:100%;margin-top:8px;background:#eee;border:0;padding:11px;border-radius:10px">Continue shopping</button>
+</div>
 <script>
 const foods=[
-{id:1,name:"Chicken & Chips",desc:"Crispy chicken + fries",price:350,cat:"Chicken",img:"https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400"},
-{id:2,name:"Burger & Chips",desc:"Beef burger + chips",price:400,cat:"Chips",img:"https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e?w=400"},
-{id:3,name:"Fries + Soda",desc:"Fries + soda",price:250,cat:"Chips",img:"https://images.unsplash.com/photo-1573080496219-bb1a2b6d0a2f?w=400"},
-{id:4,name:"Pilau Kuku",desc:"Pilau + kuku",price:450,cat:"Pilau",img:"https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=400"},
-{id:5,name:"Chapati 2pcs",desc:"Soft chapati",price:60,cat:"Chapati",img:"https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400"},
-{id:6,name:"Pilau Plain",desc:"Tasty pilau",price:200,cat:"Pilau",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"},
-{id:7,name:"Soda 500ml",desc:"Coca/Fanta",price:80,cat:"Soda",img:"https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?w=400"},
-{id:8,name:"Kuku Full",desc:"Full chicken",price:1200,cat:"Chicken",img:"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400"},
+{name:"Chicken & Chips",price:450,img:"https://images.unsplash.com/photo-1562967914-608f82629710?w=500"},
+{name:"Beef Burger",price:380,img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=500"},
+{name:"Family Pizza",price:950,img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"},
+{name:"Fries + Soda",price:250,img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500"},
+{name:"Grilled Chicken",price:600,img:"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500"},
+{name:"Shawarma",price:350,img:"https://images.unsplash.com/photo-1525183995014-b329225b9407?w=500"},
 ];
-let cart=[],user=JSON.parse(localStorage.getItem('cc_user')||'null');
-function render(list=foods){document.getElementById('grid').innerHTML=list.map(f=>`<div class="card"><img src="${f.img}"><div style="padding:10px"><b>${f.name}</b><div style="font-size:12px;color:#666">${f.desc}</div><div class="price">Ksh ${f.price}</div><button class="btn" onclick="addCart(${f.id})">+ Add</button></div></div>`).join('')}
-function addCart(id){let item=foods.find(x=>x.id===id);let c=cart.find(x=>x.id===id);if(c)c.qty++;else cart.push({...item,qty:1});updateBar();if(navigator.vibrate)navigator.vibrate(50)}
-function updateBar(){let count=cart.reduce((s,x)=>s+x.qty,0);let total=cart.reduce((s,x)=>s+x.price*x.qty,0);document.getElementById('cartBar').innerText=`Cart (${count}) - Ksh ${total} • Rider 0786673688 • WhatsApp 0119539151`;renderCart()}
-function renderCart(){let total=cart.reduce((s,x)=>s+x.price*x.qty,0);document.getElementById('cartList').innerHTML=cart.length?cart.map(x=>`${x.name} x${x.qty} - Ksh ${x.price*x.qty}`).join('<br>'):'Cart empty';document.getElementById('cartTotal').innerText=`Total: Ksh ${total} + 100 delivery = Ksh ${total+100}`;}
-function openCart(){updateBar();document.getElementById('cartModal').classList.add('open')}
-function closeCart(){document.getElementById('cartModal').classList.remove('open')}
-function openLogin(){document.getElementById('loginModal').classList.add('open');if(user){document.getElementById('profileArea').style.display='block';document.getElementById('profileArea').innerHTML=`Logged in as <b>${user.name}</b><br>Phone: ${user.phone}<br><button onclick="logout()" style="margin-top:8px;background:#ff4444;color:#fff;border:0;padding:8px 12px;border-radius:8px">Logout</button>`}}
-function closeLogin(){document.getElementById('loginModal').classList.remove('open')}
-function doLogin(){let n=document.getElementById('loginName').value;let p=document.getElementById('loginPhone').value;if(!n||!p){alert('Enter name & phone');return}user={name:n,phone:p};localStorage.setItem('cc_user',JSON.stringify(user));alert('Welcome '+n+'!');closeLogin()}
-function logout(){localStorage.removeItem('cc_user');user=null;document.getElementById('profileArea').style.display='none';alert('Logged out')}
-function placeMpesa(){let code=document.getElementById('mpCode').value;let phone=document.getElementById('mpPhone').value|| (user?user.phone:'');let loc=document.getElementById('custLoc').value;if(!code){alert('Enter M-Pesa Code sent to 0119539151');return}let total=cart.reduce((s,x)=>s+x.price*x.qty,0)+100;let order=cart.map(x=>`${x.name} x${x.qty}`).join(', ');let msg=`NEW ORDER ChapChap Eldoret\nName: ${user?user.name:'Guest'}\nPhone: ${phone}\nLocation: ${loc}\nOrder: ${order}\nTotal: Ksh ${total} (incl delivery)\nM-Pesa Code: ${code}\nSent to: 0119539151\nRider Call: 0786673688`;window.open(`https://wa.me/254119539151?text=${encodeURIComponent(msg)}`);alert('Order sent to WhatsApp 0119539151! Rider 0786673688 will deliver.')}
-function placePaypal(){let total=cart.reduce((s,x)=>s+x.price*x.qty,0)+100;let order=cart.map(x=>`${x.name} x${x.qty}`).join(', ');let msg=`PayPal Order - ChapChap\nOrder: ${order}\nTotal: Ksh ${total}\nName: ${user?user.name:'Guest'}`;window.open(`https://www.paypal.me/`);window.open(`https://wa.me/254119539151?text=${encodeURIComponent(msg+' - I want to pay via PayPal to 0119539151 account')}`);alert('PayPal: Pay to your PayPal linked to 0119539151, then confirm on WhatsApp 0119539151')}
-function filterCat(el,cat){document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(cat==='All'?foods:foods.filter(f=>f.cat===cat))}
-document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.toLowerCase();render(foods.filter(f=>f.name.toLowerCase().includes(q)||f.desc.toLowerCase().includes(q)))});
-render();updateBar();
+let cart=[],payMethod='M-Pesa Send Money';
+let PAYPAL_LINK="https://www.paypal.com/ncp/payment/PASTE_YOUR_LINK_HERE";
+const grid=document.getElementById('grid');
+foods.forEach((f,i)=>{grid.innerHTML+=`<div class="card"><img src="${f.img}"><div class="card-body"><b>${f.name}</b><div class="price">KES ${f.price}</div><button class="add" onclick="addToCart(${i})">Add +</button></div></div>`});
+function addToCart(i){cart.push(foods[i]);document.getElementById('cart-count').innerText=cart.length;renderCart();document.getElementById('cartDrawer').classList.add('open');}
+function renderCart(){let h='',t=0;cart.forEach(c=>{t+=c.price;h+=`<div style="display:flex;justify-content:space-between;margin:6px 0"><span>${c.name}</span><span>KES ${c.price}</span></div>`});document.getElementById('cartItems').innerHTML=h||'Cart empty';document.getElementById('total').innerText=t;document.getElementById('totalUSD').innerText=(t/130).toFixed(2);document.getElementById('payTotal').innerText=t;}
+function toggleCart(){document.getElementById('cartDrawer').classList.toggle('open');}
+function selectPay(el,m){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('active'));el.classList.add('active');payMethod=m;}
+function placeOrder(){
+if(cart.length==0)return alert('Cart empty');
+if(!document.getElementById('phone').value||!document.getElementById('location').value)return alert('Add phone & location');
+let total=cart.reduce((a,b)=>a+b.price,0);
+if(payMethod.includes('M-Pesa')){alert('M-Pesa Send Money to 0119539151 Amount KES '+total);orderWhatsApp();}
+else{let usd=(total/130).toFixed(2);window.open(PAYPAL_LINK.includes('PASTE')?'https://www.paypal.com/paypalme/ErickMuriithi/'+usd:PAYPAL_LINK,'_blank');setTimeout(orderWhatsApp,800);}
+}
+function orderWhatsApp(){
+let total=cart.reduce((a,b)=>a+b.price,0);let msg=`*NEW ORDER Chap Chap*%0A`;cart.forEach(c=>msg+=`- ${c.name} KES ${c.price}%0A`);msg+=`%0ATotal KES ${total} ($${(total/130).toFixed(2)})%0APay: ${payMethod}%0ACustomer: ${document.getElementById('phone').value}%0ALocation: ${document.getElementById('location').value}%0ARider 0786673688%0AM-Pesa Code: `;
+window.open('https://wa.me/254119539151?text='+msg,'_blank');
+}
 </script></body></html>
