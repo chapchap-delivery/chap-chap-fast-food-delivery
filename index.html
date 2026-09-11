@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chap Chap Kenya - Fast like Glovo</title>
+<title>Chap Chap Kenya - Rider Tracking</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f5f5;padding-bottom:90px}
@@ -13,6 +13,9 @@ body{background:#f5f5f5;padding-bottom:90px}
 .right{display:flex;gap:6px;align-items:center}
 .account{background:#000;color:#fff;padding:8px 12px;border-radius:20px;font-size:12px}
 .cart{background:#fff;padding:8px 12px;border-radius:20px;font-weight:900;cursor:pointer}
+.moto-bar{background:#000;color:#FFC107;padding:6px;overflow:hidden;white-space:nowrap;position:relative;height:32px}
+.moto-move{position:absolute;animation:moving 6s linear infinite;font-weight:900;font-size:14px}
+@keyframes moving{0%{left:-250px}100%{left:100%}}
 .search{background:#fff;margin:10px;border-radius:25px;padding:12px 15px;display:flex;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 .search input{border:none;outline:none;width:100%;margin-left:8px}
 .mpesa{background:#fff3cd;padding:8px;text-align:center;font-size:11px;border-left:4px solid #FFC107}
@@ -33,7 +36,13 @@ body{background:#f5f5f5;padding-bottom:90px}
 .cart-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:14px}
 .payBtn{background:#000;color:#FFC107;width:100%;padding:14px;border:none;border-radius:12px;font-weight:900;margin-top:10px}
 .waBtn{background:#25D366;color:#fff;width:100%;padding:14px;border:none;border-radius:12px;font-weight:900;margin-top:8px}
+.trackBtn{background:#FFC107;color:#000;width:100%;padding:12px;border:none;border-radius:12px;font-weight:900;margin-top:8px;border:2px dashed #000}
 .footer{background:#000;color:#fff;text-align:center;padding:20px;font-size:12px;margin-top:20px}
+#trackModal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:50;padding:15px}
+#trackModal.open{display:flex}
+.trackBox{background:#fff;width:100%;max-width:350px;border-radius:20px;padding:20px;text-align:center}
+.progress{height:8px;background:#eee;border-radius:10px;margin:15px 0;overflow:hidden}
+.progress-bar{height:100%;background:#FFC107;width:10%;transition:1s}
 </style>
 </head>
 <body>
@@ -41,8 +50,9 @@ body{background:#f5f5f5;padding-bottom:90px}
 <div class="logo">chap chap●<span>Kenya • Fast like Glovo</span></div>
 <div class="right"><div class="account">👤 Erick</div><div class="cart" onclick="openCart()">🛒 <span id="count">0</span></div></div>
 </div>
+<div class="moto-bar"><div class="moto-move">🛵💨 Rider is moving — Delivery 20-30 mins Eldoret — Chap Chap Fast! 🛵💨</div></div>
 <div class="search">🔍 <input id="search" onkeyup="filterFood()" placeholder="What do you want to eat today?"></div>
-<div class="mpesa">M-Pesa Till <b>0119539151</b> • Rider <b>0786673688</b> • Delivery 20-30 min • Eldoret</div>
+<div class="mpesa">M-Pesa Till <b>0119539151</b> • Rider <b>0786673688</b> • Live Tracking ON • Eldoret</div>
 <div class="cats">
 <button class="active" onclick="filterCat('all',this)">All</button>
 <button onclick="filterCat('chicken',this)">🍗 Chicken</button>
@@ -59,24 +69,35 @@ body{background:#f5f5f5;padding-bottom:90px}
 <div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400"><div class="info"><div class="top">Fries + Soda <span class="badge">15'</span></div><div class="price">KES 250</div><button class="add" onclick="addItem('Fries + Soda',250)">Add +</button></div></div>
 <div class="card" data-cat="chicken"><img src="https://images.unsplash.com/photo-1527477396000-e27163b489c2?w=400"><div class="info"><div class="top">Wings 6 + Chips <span class="badge">25'</span></div><div class="price">KES 550</div><button class="add" onclick="addItem('Wings + Chips',550)">Add +</button></div></div>
 <div class="card" data-cat="burger"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400"><div class="info"><div class="top">Shawarma Beef <span class="badge">15'</span></div><div class="price">KES 350</div><button class="add" onclick="addItem('Shawarma Beef',350)">Add +</button></div></div>
-<div class="card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"><div class="info"><div class="top">Pepperoni M <span class="badge">25'</span></div><div class="price">KES 750</div><button class="add" onclick="addItem('Pepperoni M',750)">Add +</button></div></div>
 <div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400"><div class="info"><div class="top">Chicken Pilau <span class="badge">20'</span></div><div class="price">KES 400</div><button class="add" onclick="addItem('Chicken Pilau',400)">Add +</button></div></div>
 <div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400"><div class="info"><div class="top">Ugali Beef + Veg <span class="badge">20'</span></div><div class="price">KES 350</div><button class="add" onclick="addItem('Ugali Beef',350)">Add +</button></div></div>
-<div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"><div class="info"><div class="top">Pilau Beef Special <span class="badge">20'</span></div><div class="price">KES 350</div><button class="add" onclick="addItem('Pilau Beef',350)">Add +</button></div></div>
 <div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?w=400"><div class="info"><div class="top">Soda 500ml <span class="badge">5'</span></div><div class="price">KES 80</div><button class="add" onclick="addItem('Soda 500ml',80)">Add +</button></div></div>
 <div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400"><div class="info"><div class="top">Fresh Mango Juice <span class="badge">10'</span></div><div class="price">KES 150</div><button class="add" onclick="addItem('Mango Juice',150)">Add +</button></div></div>
-<div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1544148103-05eecbf10d8c?w=400"><div class="info"><div class="top">Smoothie <span class="badge">10'</span></div><div class="price">KES 200</div><button class="add" onclick="addItem('Smoothie',200)">Add +</button></div></div>
-<div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400"><div class="info"><div class="top">Water 500ml <span class="badge">5'</span></div><div class="price">KES 50</div><button class="add" onclick="addItem('Water 500ml',50)">Add +</button></div></div>
 </div>
 <div id="cartModal">
 <h3>🛒 Your ChapChap Cart</h3>
 <div id="cartList" style="margin:10px 0">Cart empty</div>
 <div style="font-weight:900;display:flex;justify-content:space-between"><span>Total:</span><span>KES <span id="total">0</span></span></div>
-<button class="payBtn" onclick="payMpesa()">💳 Pay with M-Pesa STK - 0119539151</button>
-<button class="waBtn" onclick="orderWhatsApp()">📲 Order on WhatsApp - 0119539151</button>
+<button class="payBtn" onclick="payMpesa()">💳 Pay M-Pesa 0119539151</button>
+<button class="waBtn" onclick="orderWhatsApp()">📲 Order WhatsApp 0119539151</button>
+<button class="trackBtn" onclick="openTrack()">🛵💨 Track My Rider Live</button>
 <button style="width:100%;padding:10px;border:none;background:#eee;border-radius:10px;margin-top:8px" onclick="closeCart()">Close</button>
 </div>
-<div class="footer">ChapChap Kenya • Eldoret • Fast like Glovo<br>M-Pesa 0119539151 • Rider 0786673688<br>Delivery 20-30 mins • Open 8am - 10pm</div>
+<div id="trackModal" onclick="closeTrack()">
+<div class="trackBox" onclick="event.stopPropagation()">
+<h3>🛵💨 Rider Live Tracking</h3>
+<div style="font-size:50px;margin:10px" id="riderEmoji">🛵</div>
+<div id="trackStatus" style="font-weight:900">Rider Erick - Preparing your food...</div>
+<div class="progress"><div class="progress-bar" id="bar"></div></div>
+<div id="trackSteps" style="text-align:left;font-size:13px;line-height:1.8">
+✅ Order Received<br>👨‍🍳 Kitchen - Cooking<br>🛵 Rider Picked - On the way<br>📍 Near Eldoret Town<br>🏠 Delivered
+</div>
+<div style="margin-top:10px;font-size:12px">Rider: Erick • 0786673688<br>ETA: 25 mins • M-Pesa: 0119539151</div>
+<button class="waBtn" onclick="callRider()">📞 Call Rider 0786673688</button>
+<button style="width:100%;padding:10px;border:none;background:#eee;border-radius:10px;margin-top:8px" onclick="closeTrack()">Close Tracking</button>
+</div>
+</div>
+<div class="footer">ChapChap Kenya • Eldoret • Fast like Glovo<br>M-Pesa 0119539151 • Rider 0786673688<br>🛵 Live Tracking ON • Open 8am-10pm</div>
 <script>
 let cart=[];
 function addItem(name,price){cart.push({name,price});updateCart();document.getElementById('cartModal').classList.add('open');}
@@ -91,24 +112,23 @@ function removeItem(i){cart.splice(i,1);updateCart();}
 function openCart(){document.getElementById('cartModal').classList.add('open');}
 function closeCart(){document.getElementById('cartModal').classList.remove('open');}
 function filterFood(){let q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';});}
-function filterCat(cat,btn){
-document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat=='all'||c.dataset.cat==cat)?'block':'none';});
+function filterCat(cat,btn){document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat=='all'||c.dataset.cat==cat)?'block':'none';});}
+function payMpesa(){let total=document.getElementById('total').innerText;if(total==0){alert('Cart empty Boss!');return;}let phone=prompt('Enter M-Pesa number 07...');if(phone){alert(`STK Push KES ${total} to ${phone} Till 0119539151`);openTrack();}}
+function orderWhatsApp(){let total=document.getElementById('total').innerText;if(total==0){alert('Cart empty Boss!');return;}let msg='Habari ChapChap! Order:%0A';cart.forEach(i=>{msg+=`- ${i.name} KES ${i.price}%0A`});msg+=`%0ATotal KES ${total}%0AEldoret`;window.open(`https://wa.me/254119539151?text=${msg}`,'_blank');openTrack();}
+function openTrack(){
+document.getElementById('trackModal').classList.add('open');
+let w=10;let statuses=["Rider Erick - Preparing food...","👨‍🍳 Kitchen cooking your order...","🛵💨 Rider picked - Leaving restaurant!","📍 Rider in Eldoret Town - 10 mins!","🏠 Rider near you - 2 mins! Delivered!"];
+let idx=0;
+let int=setInterval(()=>{
+w+=20;if(w>100)w=100;
+document.getElementById('bar').style.width=w+'%';
+document.getElementById('trackStatus').innerText=statuses[idx]||statuses[4];
+if(idx<4)idx++;
+if(w>=100)clearInterval(int);
+},2000);
 }
-function payMpesa(){
-let total=document.getElementById('total').innerText;
-if(total==0){alert('Cart empty Boss!');return;}
-let phone=prompt('Enter M-Pesa number to receive STK push (07...)');
-if(phone){alert(`STK Push sent to ${phone} for KES ${total}\nTill: 0119539151\nCheck phone and enter PIN`);}
-}
-function orderWhatsApp(){
-let total=document.getElementById('total').innerText;
-if(total==0){alert('Cart empty Boss!');return;}
-let msg='Habari ChapChap! Nataka kuorder:%0A';
-cart.forEach(i=>{msg+=`- ${i.name} KES ${i.price}%0A`});
-msg+=`%0ATotal: KES ${total}%0ADelivery: Eldoret`;
-window.open(`https://wa.me/254119539151?text=${msg}`,'_blank');
-}
+function closeTrack(){document.getElementById('trackModal').classList.remove('open');}
+function callRider(){window.open('tel:0786673688','_self');}
 </script>
 </body>
 </html>
