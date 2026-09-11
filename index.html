@@ -3,104 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chap Chap Kenya - Fast like Glovo</title>
+<title>Chap Chap Kenya - Fast like Glovo | Eldoret</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f5f5f5}
-.header{background:#FFC107;padding:12px 10px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
+body{background:#f5f5f5;padding-bottom:90px}
+.header{background:#FFC107;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
 .logo{font-weight:900;font-size:20px;line-height:1}
-.logo span{font-size:10px;font-weight:400}
-.right{display:flex;gap:8px;align-items:center}
-.account{background:black;color:white;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:bold}
-.cart{background:white;padding:8px 14px;border-radius:20px;font-weight:bold}
-.search{background:white;margin:10px;border-radius:25px;padding:12px 15px;display:flex;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-.search input{border:none;outline:none;width:100%;margin-left:8px;font-size:15px}
-.mpesa{background:#fff8dc;padding:10px 12px;font-size:12px;border-left:4px solid #FFC107}
-.cat{padding:18px 10px 8px 10px;font-weight:900;font-size:18px}
+.logo span{font-size:10px;font-weight:400;display:block}
+.right{display:flex;gap:6px;align-items:center}
+.account{background:#000;color:#fff;padding:8px 12px;border-radius:20px;font-size:12px}
+.cart{background:#fff;padding:8px 12px;border-radius:20px;font-weight:900;cursor:pointer}
+.search{background:#fff;margin:10px;border-radius:25px;padding:12px 15px;display:flex;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.search input{border:none;outline:none;width:100%;margin-left:8px}
+.mpesa{background:#fff3cd;padding:8px;text-align:center;font-size:11px;border-left:4px solid #FFC107}
+.cats{display:flex;gap:8px;padding:10px;overflow-x:auto;white-space:nowrap}
+.cats button{border:none;background:#fff;padding:8px 16px;border-radius:20px;font-weight:bold;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.cats button.active{background:#000;color:#FFC107}
+.cat-title{padding:18px 12px 8px;font-weight:900;font-size:17px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px}
-.card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.card img{width:100%;height:135px;object-fit:cover}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.card img{width:100%;height:130px;object-fit:cover}
 .info{padding:8px 10px}
-.top{display:flex;justify-content:space-between;font-weight:bold;font-size:13px}
-.badge{font-size:10px;background:#eee;padding:3px 7px;border-radius:10px}
-.price{font-weight:900;margin:6px 0;font-size:14px}
-.add{background:#FFC107;border:none;width:100%;padding:9px;border-radius:10px;font-weight:900;cursor:pointer}
-.footer{background:black;color:white;text-align:center;padding:20px;font-size:12px;line-height:1.6;margin-top:20px}
-.footer a{color:#FFC107;text-decoration:none;font-weight:bold;font-size:14px}
+.top{display:flex;justify-content:space-between;font-weight:700;font-size:13px}
+.badge{font-size:10px;background:#eee;padding:2px 6px;border-radius:10px}
+.price{font-weight:900;margin:5px 0}
+.add{background:#FFC107;border:none;width:100%;padding:8px;border-radius:10px;font-weight:900}
+#cartModal{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;box-shadow:0 -5px 20px rgba(0,0,0,.2);padding:15px;transform:translateY(100%);transition:.3s;z-index:30;max-height:80vh;overflow:auto}
+#cartModal.open{transform:translateY(0)}
+.cart-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:14px}
+.payBtn{background:#000;color:#FFC107;width:100%;padding:14px;border:none;border-radius:12px;font-weight:900;margin-top:10px}
+.waBtn{background:#25D366;color:#fff;width:100%;padding:14px;border:none;border-radius:12px;font-weight:900;margin-top:8px}
+.footer{background:#000;color:#fff;text-align:center;padding:20px;font-size:12px;margin-top:20px}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="logo">chap chap●<span>Kenya • Fast like Glovo</span></div>
-  <div class="right"><div style="font-size:13px">Erick</div><div class="account">👤 Account</div><div class="cart">🛒 <span id="count">0</span></div></div>
+<div class="logo">chap chap●<span>Kenya • Fast like Glovo</span></div>
+<div class="right"><div class="account">👤 Erick</div><div class="cart" onclick="openCart()">🛒 <span id="count">0</span></div></div>
 </div>
 
-<div class="search">🔍 <input type="text" id="search" placeholder="What do you want to eat today?" onkeyup="searchFood()"></div>
-<div class="mpesa">🔒 M-Pesa <b>0119539151</b> • Rider <b>0786673688</b> • Delivery 20-30' • Eldoret</div>
+<div class="search">🔍 <input id="search" onkeyup="filterFood()" placeholder="What do you want to eat today?"></div>
+<div class="mpesa">M-Pesa Till <b>0119539151</b> • Rider <b>0786673688</b> • Delivery 20-30 min • Eldoret</div>
 
-<!-- CHICKEN -->
-<div class="cat">🍗 Chicken - Kuku</div>
+<div class="cats">
+<button class="active" onclick="filterCat('all',this)">All</button>
+<button onclick="filterCat('chicken',this)">🍗 Chicken</button>
+<button onclick="filterCat('burger',this)">🍔 Burgers</button>
+<button onclick="filterCat('pizza',this)">🍕 Pizza</button>
+<button onclick="filterCat('local',this)">🍛 Local</button>
+<button onclick="filterCat('drinks',this)">🥤 Drinks</button>
+</div>
+
+<div id="allFood">
+<div class="cat-title">🔥 Most Ordered - 30+ Meals</div>
 <div class="grid">
-  <div class="card"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=400"><div class="info"><div class="top">Chicken & Chips <span class="badge">25'</span></div><div class="price">KES 450</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1527477396000-e27163b489c2?w=400"><div class="info"><div class="top">Wings 6 + Chips <span class="badge">25'</span></div><div class="price">KES 550</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400"><div class="info"><div class="top">Full Kienyeji <span class="badge">35'</span></div><div class="price">KES 1200</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400"><div class="info"><div class="top">Chicken Pilau <span class="badge">20'</span></div><div class="price">KES 400</div><button class="add" onclick="add()">Add +</button></div></div>
+<div class="card" data-cat="chicken"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=400"><div class="info"><div class="top">Chicken & Chips <span class="badge">25'</span></div><div class="price">KES 450</div><button class="add" onclick="addItem('Chicken & Chips',450)">Add +</button></div></div>
+<div class="card" data-cat="burger"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400"><div class="info"><div class="top">Beef Burger + Fries <span class="badge">20'</span></div><div class="price">KES 380</div><button class="add" onclick="addItem('Beef Burger + Fries',380)">Add +</button></div></div>
+<div class="card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"><div class="info"><div class="top">Family Pizza Large <span class="badge">30'</span></div><div class="price">KES 950</div><button class="add" onclick="addItem('Family Pizza',950)">Add +</button></div></div>
+<div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400"><div class="info"><div class="top">Fries + Soda <span class="badge">15'</span></div><div class="price">KES 250</div><button class="add" onclick="addItem('Fries + Soda',250)">Add +</button></div></div>
+<div class="card" data-cat="chicken"><img src="https://images.unsplash.com/photo-1527477396000-e27163b489c2?w=400"><div class="info"><div class="top">Wings 6 + Chips <span class="badge">25'</span></div><div class="price">KES 550</div><button class="add" onclick="addItem('Wings + Chips',550)">Add +</button></div></div>
+<div class="card" data-cat="burger"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400"><div class="info"><div class="top">Shawarma Beef <span class="badge">15'</span></div><div class="price">KES 350</div><button class="add" onclick="addItem('Shawarma Beef',350)">Add +</button></div></div>
+<div class="card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"><div class="info"><div class="top">Pepperoni M <span class="badge">25'</span></div><div class="price">KES 750</div><button class="add" onclick="addItem('Pepperoni M',750)">Add +</button></div></div>
+<div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400"><div class="info"><div class="top">Chicken Pilau <span class="badge">20'</span></div><div class="price">KES 400</div><button class="add" onclick="addItem('Chicken Pilau',400)">Add +</button></div></div>
+<div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400"><div class="info"><div class="top">Ugali Beef + Veg <span class="badge">20'</span></div><div class="price">KES 350</div><button class="add" onclick="addItem('Ugali Beef',350)">Add +</button></div></div>
+<div class="card" data-cat="local"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"><div class="info"><div class="top">Pilau Beef Special <span class="badge">20'</span></div><div class="price">KES 350</div><button class="add" onclick="addItem('Pilau Beef',350)">Add +</button></div></div>
+<div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?w=400"><div class="info"><div class="top">Soda 500ml <span class="badge">5'</span></div><div class="price">KES 80</div><button class="add" onclick="addItem('Soda 500ml',80)">Add +</button></div></div>
+<div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400"><div class="info"><div class="top">Fresh Mango Juice <span class="badge">10'</span></div><div class="price">KES 150</div><button class="add" onclick="addItem('Mango Juice',150)">Add +</button></div></div>
+<div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1544148103-05eecbf10d8c?w=400"><div class="info"><div class="top">Smoothie <span class="badge">10'</span></div><div class="price">KES 200</div><button class="add" onclick="addItem('Smoothie',200)">Add +</button></div></div>
+<div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400"><div class="info"><div class="top">Water 500ml <span class="badge">5'</span></div><div class="price">KES 50</div><button class="add" onclick="addItem('Water 500ml',50)">Add +</button></div></div>
+</div>
 </div>
 
-<!-- BURGERS -->
-<div class="cat">🍔 Burgers & Shawarma</div>
-<div class="grid">
-  <div class="card"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=400"><div class="info"><div class="top">Beef Burger + Fries <span class="badge">20'</span></div><div class="price">KES 380</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400"><div class="info"><div class="top">Double Cheese <span class="badge">20'</span></div><div class="price">KES 500</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400"><div class="info"><div class="top">Shawarma Beef <span class="badge">15'</span></div><div class="price">KES 350</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400"><div class="info"><div class="top">Chicken Burger <span class="badge">20'</span></div><div class="price">KES 400</div><button class="add" onclick="add()">Add +</button></div></div>
+<div id="cartModal">
+<h3>🛒 Your ChapChap Cart</h3>
+<div id="cartList" style="margin:10px 0">Cart empty</div>
+<div style="font-weight:900;display:flex;justify-content:space-between"><span>Total:</span><span>KES <span id="total">0</span></span></div>
+<button class="payBtn" onclick="payMpesa()">💳 Pay with M-Pesa STK - 0119539151</button>
+<button class="waBtn" onclick="orderWhatsApp()">📲 Order on WhatsApp - 0119539151</button>
+<button style="width:100%;padding:10px;border:none;background:#eee;border-radius:10px;margin-top:8px" onclick="closeCart()">Close</button>
 </div>
 
-<!-- PIZZA -->
-<div class="cat">🍕 Pizza</div>
-<div class="grid">
-  <div class="card"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"><div class="info"><div class="top">Family Large <span class="badge">30'</span></div><div class="price">KES 950</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1604382355076-af4b54dccda6?w=400"><div class="info"><div class="top">Medium Pizza <span class="badge">25'</span></div><div class="price">KES 750</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"><div class="info"><div class="top">Small Pizza <span class="badge">20'</span></div><div class="price">KES 550</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1595708684082-a1733568a06d?w=400"><div class="info"><div class="top">BBQ Chicken Pizza <span class="badge">30'</span></div><div class="price">KES 900</div><button class="add" onclick="add()">Add +</button></div></div>
-</div>
-
-<!-- LOCAL -->
-<div class="cat">🍛 Local & Fries</div>
-<div class="grid">
-  <div class="card"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400"><div class="info"><div class="top">Ugali + Beef <span class="badge">20'</span></div><div class="price">KES 350</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"><div class="info"><div class="top">Pilau Beef <span class="badge">20'</span></div><div class="price">KES 350</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400"><div class="info"><div class="top">Fries + Soda <span class="badge">15'</span></div><div class="price">KES 250</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400"><div class="info"><div class="top">Plain Fries <span class="badge">10'</span></div><div class="price">KES 150</div><button class="add" onclick="add()">Add +</button></div></div>
-</div>
-
-<!-- DRINKS -->
-<div class="cat">🥤 Drinks Baridi</div>
-<div class="grid">
-  <div class="card"><img src="https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?w=400"><div class="info"><div class="top">Soda 500ml <span class="badge">5'</span></div><div class="price">KES 80</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400"><div class="info"><div class="top">Water 500ml <span class="badge">5'</span></div><div class="price">KES 50</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400"><div class="info"><div class="top">Fresh Juice <span class="badge">10'</span></div><div class="price">KES 150</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1544148103-05eecbf10d8c?w=400"><div class="info"><div class="top">Smoothie <span class="badge">10'</span></div><div class="price">KES 200</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400"><div class="info"><div class="top">Milkshake <span class="badge">10'</span></div><div class="price">KES 250</div><button class="add" onclick="add()">Add +</button></div></div>
-  <div class="card"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400"><div class="info"><div class="top">Energy Drink <span class="badge">5'</span></div><div class="price">KES 180</div><button class="add" onclick="add()">Add +</button></div></div>
-</div>
-
-<div class="footer">
-  ChapChap Kenya • Eldoret - Fast like Glovo<br>
-  M-Pesa 0119539151 • PayPal • Rider 0786673688<br><br>
-  <a href="https://wa.me/254786673688?text=Habari%20ChapChap%20Nataka%20kuorder">📲 ORDER ON WHATSAPP</a><br><br>
-  Delivery in 20-30 mins • Open 8am - 10pm
-</div>
+<div class="footer">ChapChap Kenya • Eldoret • Fast like Glovo<br>M-Pesa 0119539151 • Rider 0786673688<br>Delivery 20-30 mins • Open 8am - 10pm</div>
 
 <script>
-let c=0;
-function add(){c++;document.getElementById('count').innerText=c;}
-function searchFood(){
- let q=document.getElementById('search').value.toLowerCase();
- document.querySelectorAll('.card').forEach(card=>{
-  card.style.display=card.innerText.toLowerCase().includes(q)?'block':'none';
- });
+let cart=[];
+function addItem(name,price){cart.push({name,price});updateCart();document.getElementById('cartModal').classList.add('open');}
+function updateCart(){
+document.getElementById('count').innerText=cart.length;
+let list=document.getElementById('cartList');let total=0;list.innerHTML='';
+if(cart.length==0){list.innerHTML='Cart empty';}
+cart.forEach((item,i)=>{total+=item.price;list.innerHTML+=`<div class="cart-item"><span>${item.name}</span><span>KES ${item.price} <span onclick="removeItem(${i})" style="color:red;cursor:pointer"> x</span></span></div>`});
+document.getElementById('total').innerText=total;
+}
+function removeItem(i){cart.splice(i,1);updateCart();}
+function openCart(){document.getElementById('cartModal').classList.add('open');}
+function closeCart(){document.getElementById('cartModal').classList.remove('open');}
+function filterFood(){let q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';});}
+function filterCat(cat,btn){
+document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat=='all'||c.dataset.cat==cat)?'block':'none';});
+}
+function payMpesa(){
+let total=document.getElementById('total').innerText;
+if(total==0){alert('Cart empty Boss!');return;}
+let phone=prompt('Enter M-Pesa number to receive STK push (07...)');
+if(phone){alert(`STK Push sent to ${phone} for KES ${total}\nTill: 0119539151\nCheck phone and enter PIN`);}
+}
+function orderWhatsApp(){
+let total=document.getElementById('total').innerText;
+if(total==0){alert('Cart empty Boss!');return;}
+let msg='Habari ChapChap! Nataka kuorder:%0A';
+cart.forEach(i=>{msg+=`- ${i.name} KES ${i.price}%0A`});
+msg+=`%0ATotal: KES ${total}%0ADelivery: Eldoret`;
+window.open(`https://wa.me/254119539151?text=${msg}`,'_blank');
 }
 </script>
 </body>
