@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chap Chap Kenya - Fast like Glovo | Eldoret</title>
+<title>Chap Chap Kenya - Fast like Glovo</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f5f5;padding-bottom:90px}
@@ -37,15 +37,12 @@ body{background:#f5f5f5;padding-bottom:90px}
 </style>
 </head>
 <body>
-
 <div class="header">
 <div class="logo">chap chap●<span>Kenya • Fast like Glovo</span></div>
 <div class="right"><div class="account">👤 Erick</div><div class="cart" onclick="openCart()">🛒 <span id="count">0</span></div></div>
 </div>
-
 <div class="search">🔍 <input id="search" onkeyup="filterFood()" placeholder="What do you want to eat today?"></div>
 <div class="mpesa">M-Pesa Till <b>0119539151</b> • Rider <b>0786673688</b> • Delivery 20-30 min • Eldoret</div>
-
 <div class="cats">
 <button class="active" onclick="filterCat('all',this)">All</button>
 <button onclick="filterCat('chicken',this)">🍗 Chicken</button>
@@ -54,8 +51,6 @@ body{background:#f5f5f5;padding-bottom:90px}
 <button onclick="filterCat('local',this)">🍛 Local</button>
 <button onclick="filterCat('drinks',this)">🥤 Drinks</button>
 </div>
-
-<div id="allFood">
 <div class="cat-title">🔥 Most Ordered - 30+ Meals</div>
 <div class="grid">
 <div class="card" data-cat="chicken"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=400"><div class="info"><div class="top">Chicken & Chips <span class="badge">25'</span></div><div class="price">KES 450</div><button class="add" onclick="addItem('Chicken & Chips',450)">Add +</button></div></div>
@@ -73,8 +68,6 @@ body{background:#f5f5f5;padding-bottom:90px}
 <div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1544148103-05eecbf10d8c?w=400"><div class="info"><div class="top">Smoothie <span class="badge">10'</span></div><div class="price">KES 200</div><button class="add" onclick="addItem('Smoothie',200)">Add +</button></div></div>
 <div class="card" data-cat="drinks"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400"><div class="info"><div class="top">Water 500ml <span class="badge">5'</span></div><div class="price">KES 50</div><button class="add" onclick="addItem('Water 500ml',50)">Add +</button></div></div>
 </div>
-</div>
-
 <div id="cartModal">
 <h3>🛒 Your ChapChap Cart</h3>
 <div id="cartList" style="margin:10px 0">Cart empty</div>
@@ -83,9 +76,7 @@ body{background:#f5f5f5;padding-bottom:90px}
 <button class="waBtn" onclick="orderWhatsApp()">📲 Order on WhatsApp - 0119539151</button>
 <button style="width:100%;padding:10px;border:none;background:#eee;border-radius:10px;margin-top:8px" onclick="closeCart()">Close</button>
 </div>
-
 <div class="footer">ChapChap Kenya • Eldoret • Fast like Glovo<br>M-Pesa 0119539151 • Rider 0786673688<br>Delivery 20-30 mins • Open 8am - 10pm</div>
-
 <script>
 let cart=[];
 function addItem(name,price){cart.push({name,price});updateCart();document.getElementById('cartModal').classList.add('open');}
@@ -120,4 +111,4 @@ window.open(`https://wa.me/254119539151?text=${msg}`,'_blank');
 }
 </script>
 </body>
-  </html>
+                                                                                                                                                                                                </html>
